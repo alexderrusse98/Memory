@@ -1,14 +1,16 @@
 @use '../variables' as *;
+@use '../functions' as *;
+
 
 .home {
   min-height: 100vh;
   background-color: #2f3130;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 2rem;
 
   &__content {
+
     color: white;
     width: 100%;
     max-width: 1440px;
@@ -19,17 +21,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 5rem;
   }
 
   &__deco {
     position: absolute;
     bottom: -60px;
-    left: -60px;
-    width: 350px;
+    left: -30px;
+    width: 300px;
     fill: $color-white;
     opacity: 0.05;
     pointer-events: none;
     z-index: 0;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+   
   }
 
   &__eyebrow,
@@ -37,5 +47,44 @@
   .btn--play {
     position: relative;
     z-index: 1;
+  }
+
+  &__eyebrow {
+    font-size: rem(48);
+    margin-bottom: rem(8);
+  }
+
+  &__title {
+    font-size: rem(120);
+    font-weight: $font-weight-bold;
+    margin-bottom: rem(40);
+  }
+}
+
+.btn__icon {
+  width: rem(44);
+  height: rem(32);
+  fill: $color-black;
+}
+
+.btn__arrow {
+  width: rem(33);
+}
+
+.btn--play {
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  gap: rem(40);
+  font-size: rem(40);
+  width: fit-content;
+  background-color: $btn-play-bg;
+  color: $color-black;
+  font-weight: $font-weight-semibold;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: darken($btn-play-bg, 20%);
   }
 }
