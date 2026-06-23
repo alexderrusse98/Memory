@@ -1,0 +1,41 @@
+@use '../variables' as *;
+
+.home {
+  min-height: 100vh;
+  background-color: #2f3130;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  &__content {
+    color: white;
+    width: 100%;
+    max-width: 1440px;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__deco {
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 350px;
+    fill: $color-white;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__eyebrow,
+  &__title,
+  .btn--play {
+    position: relative;
+    z-index: 1;
+  }
+}
