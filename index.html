@@ -32,7 +32,82 @@
       </div>
     </section>
 
+    <section class="settings" id="settings-screen">
+
+      <h2>Settings</h2>
+
+
+      <fieldset class="settings__group">
+        <legend class="settings__legend">Games themes</legend>
+
+        <label class="settings__option">
+          <input type="radio" name="theme" value="code-vibes" checked />
+          <span class="settings__label">Code vibes theme</span>
+          <span class="settings__marker">→</span>
+        </label>
+
+        <label class="settings__option">
+          <input type="radio" name="theme" value="games"/>
+          <span class="settings__label">Gaming theme</span>
+          <span class="settings__marker">→</span>
+        </label>
+
+        <label class="settings__option">
+          <input type="radio" name="theme" value="da-projects"/>
+          <span class="settings__label">DA Projects theme</span>
+          <span class="settings__marker">→</span>
+        </label>
+        <label class="settings__option">
+          <input type="radio" name="theme" value="food"/>
+          <span class="settings__label">Foods theme</span>
+          <span class="settings__marker">→</span>
+        </label>
+      </fieldset>
+
+
+      <fieldset class="settings__group">
+        <legend class="settings__legend">Choose player</legend>
+
+        <label class="settings__option">
+          <input type="radio" name="player" value="blue" checked />
+          <span class="settings__label">Blue</span>
+          <span class="settings__marker">→</span>
+        </label>
+
+        <label class="settings__option">
+          <input type="radio" name="player" value="orange" />
+          <span class="settings__label">Orange</span>
+          <span class="settings__marker">→</span>
+        </label>
+      </fieldset>
+
+      <fieldset class="settings__group">
+        <legend class="settings__legend">Board size</legend>
+
+        <label class="settings__option">
+          <input type="radio" name="board" value="16" checked />
+          <span class="settings__label">16 Cards</span>
+          <span class="settings__marker">→</span>
+        </label>
+        
+        <label class="settings__option">
+          <input type="radio" name="board" value="24"/>
+          <span class="settings__label">24 Cards</span>
+          <span class="settings__marker">→</span>
+        </label>
+
+        <label class="settings__option">
+          <input type="radio" name="board" value="32"/>
+          <span class="settings__label">32 Cards</span>
+          <span class="settings__marker">→</span>
+        </label>
+
+      </fieldset>
+
+    </section>
   </main>
+
+
 
   <script type="module" src="/src/main.ts"></script>
 </body>

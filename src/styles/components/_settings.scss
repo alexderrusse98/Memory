@@ -1,0 +1,58 @@
+@use '../variables' as *;
+
+
+.settings {
+
+  &__group {
+    border: none; 
+    margin-bottom: 2rem;
+  }
+
+  &__legend {
+    font-weight: $font-weight-semibold;
+    margin-bottom: 0.75rem;
+  }
+
+  &__option {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer; 
+    padding: 0.25rem 0;
+  }
+
+
+  &__option input[type='radio'] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__option input[type='radio']:checked {
+    border-color: $color-black;
+  }
+
+  &__option input[type='radio']:checked::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background-color: $color-black;
+  }
+
+
+  &__marker {
+    opacity: 0;
+    color: #e8e85c;
+  }
+
+
+  &__option input[type='radio']:checked ~ &__marker {
+    opacity: 1;
+  }
+}

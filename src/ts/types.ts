@@ -1,4 +1,4 @@
-export type Theme = 'code-logos' | 'games' | 'da-projects' | 'food';
+export type Theme = 'code-vibes' | 'games' | 'da-projects' | 'food';
 
 export type BoardSize =  '4x4' | '5x4' | '6x6';
 
