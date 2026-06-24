@@ -3,8 +3,22 @@
 
 .settings {
 
+  &__layout {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  &__main {
+    flex: 1;
+  }
+
+  &__preview {
+    flex: 1;
+  }
+
   &__group {
-    border: none; 
+    border: none;
     margin-bottom: 2rem;
   }
 
@@ -18,7 +32,7 @@
     width: fit-content;
     align-items: center;
     gap: 0.5rem;
-    cursor: pointer; 
+    cursor: pointer;
     padding: 0.25rem 0;
   }
 
@@ -52,7 +66,7 @@
   }
 
 
-  &__option input[type='radio']:checked ~ &__marker {
+  &__option input[type='radio']:checked~&__marker {
     opacity: 1;
   }
 }
