@@ -1,11 +1,11 @@
 @use '../variables' as *;
 @use '../functions' as *;
-
+@use 'sass:color';
 
 .home {
   min-height: 100vh;
   background-color: #2f3130;
-  display: flex;
+  display: none;
   align-items: flex-start;
   justify-content: center;
 
@@ -85,6 +85,6 @@
   border-radius: 6px;
 
   &:hover {
-    background-color: darken($btn-play-bg, 20%);
+   background-color: color.adjust($btn-play-bg, $lightness: -20%);
   }
 }

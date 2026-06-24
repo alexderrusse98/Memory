@@ -1,13 +1,10 @@
 import './styles/style.scss';
 
-// Alle Theme-Radios greifen (die mit name="theme")
+// Alle Theme-Radios greifen
 const themeRadios = document.querySelectorAll('input[name="theme"]');
 
 // Alle Vorschaubilder greifen
 const previewImages = document.querySelectorAll('.settings__preview-img');
-
-console.log(themeRadios);
-console.log(previewImages);
 
 themeRadios.forEach((radio) => {
     radio.addEventListener('change', () => {
