@@ -17,6 +17,10 @@
     flex: 1;
   }
 
+  &__preview-img[hidden] {
+    display: none;
+  }
+
   &__group {
     border: none;
     margin-bottom: 2rem;
