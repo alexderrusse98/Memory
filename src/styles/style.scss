@@ -2,25 +2,40 @@
 @use 'components/home';
 @use 'components/settings';
 
+                    /* Red Rose */
 @font-face {
-    font-family: 'Figtree';
-    src: url('../assets/font/Figtree/static/Figtree-Regular.ttf') format('truetype');
+    font-family: 'Red_Rose';
+    src: url('../assets/font/Red_Rose/Red_Rose-Regular.ttf') format('truetype');
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Figtree';
-    src: url('../assets/font/Figtree/static/Figtree-SemiBold.ttf') format('truetype');
+    font-family: 'Red_Rose';
+    src: url('../assets/font/Red_Rose/Red_Rose-SemiBold.ttf') format('truetype');
     font-weight: 600;
 }
 
 @font-face {
-    font-family: 'Figtree';
-    src: url('../assets/font/Figtree/static/Figtree-Bold.ttf') format('truetype');
+    font-family: 'Red_Rose';
+    src: url('../assets/font/Red_Rose/Red_Rose-Bold.ttf') format('truetype');
     font-weight: 700;
 }
 
-h1 {
-  font-family: $font-primary;
-  font-weight: $font-weight-bold;
+                /* Almarai */
+@font-face {
+    font-family: 'Almarai';
+    src: url('../assets/font/Almarai/Almarai-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Almarai';
+    src: url('../assets/font/Almarai/Almarai-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Almarai';
+    src: url('../assets/font/Almarai/Almarai-Bold.ttf') format('truetype');
+    font-weight: 700;
 }
