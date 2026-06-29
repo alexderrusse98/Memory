@@ -1,4 +1,5 @@
 import './styles/style.scss';
+import { showScreen } from './ts/router';
 
 // Alle Theme-Radios greifen
 const themeRadios = document.querySelectorAll('input[name="theme"]');
@@ -18,4 +19,10 @@ themeRadios.forEach((radio) => {
         const activeImg = document.querySelector(`.settings__preview-img[data-theme="${selectedTheme}"]`);
         activeImg?.removeAttribute('hidden');
     });
+});
+
+const playBtn = document.getElementById('play-btn');
+
+playBtn?.addEventListener('click', () => {
+  showScreen('settings-screen');
 });
