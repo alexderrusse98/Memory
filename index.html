@@ -49,24 +49,20 @@
             <label class="settings__option">
               <input type="radio" name="theme" value="code-vibes" checked />
               <span class="settings__label">Code vibes theme</span>
-              <span class="settings__marker">→</span>
             </label>
 
             <label class="settings__option">
               <input type="radio" name="theme" value="games" />
               <span class="settings__label">Gaming theme</span>
-              <span class="settings__marker">→</span>
             </label>
 
             <label class="settings__option">
               <input type="radio" name="theme" value="da-projects" />
               <span class="settings__label">DA Projects theme</span>
-              <span class="settings__marker">→</span>
             </label>
             <label class="settings__option">
               <input type="radio" name="theme" value="food" />
               <span class="settings__label">Foods theme</span>
-              <span class="settings__marker">→</span>
             </label>
           </fieldset>
 
@@ -80,13 +76,11 @@
             <label class="settings__option">
               <input type="radio" name="player" value="blue" checked />
               <span class="settings__label">Blue</span>
-              <span class="settings__marker">→</span>
             </label>
 
             <label class="settings__option">
               <input type="radio" name="player" value="orange" />
               <span class="settings__label">Orange</span>
-              <span class="settings__marker">→</span>
             </label>
           </fieldset>
 
@@ -100,38 +94,45 @@
             <label class="settings__option">
               <input type="radio" name="board" value="16" checked />
               <span class="settings__label">16 Cards</span>
-              <span class="settings__marker">→</span>
             </label>
 
             <label class="settings__option">
               <input type="radio" name="board" value="24" />
               <span class="settings__label">24 Cards</span>
-              <span class="settings__marker">→</span>
             </label>
 
             <label class="settings__option">
               <input type="radio" name="board" value="32" />
               <span class="settings__label">32 Cards</span>
-              <span class="settings__marker">→</span>
             </label>
 
           </fieldset>
 
         </div>
+        <div class="settings__right">
+          <div class="settings__preview">
+            <img class="settings__preview-img" data-theme="code-vibes"
+              src="./src/assets/ui/preview_imgs/code_vibes_preview.svg" alt="Code vibes theme preview" />
 
-        <div class="settings__preview">
-          <img class="settings__preview-img" data-theme="code-vibes"
-            src="./src/assets/ui/preview_imgs/code_vibes_preview.svg" alt="Code vibes theme preview" />
+            <img class="settings__preview-img" data-theme="games" src="./src/assets/ui/preview_imgs/games_preview.svg"
+              alt="Games theme preview" hidden />
 
-          <img class="settings__preview-img" data-theme="games" src="./src/assets/ui/preview_imgs/games_preview.svg"
-            alt="Games theme preview" hidden />
+            <img class="settings__preview-img" data-theme="da-projects"
+              src="./src/assets/ui/preview_imgs/da_projects_preview.svg" alt="da-projects vibes theme preview" hidden />
 
-          <img class="settings__preview-img" data-theme="da-projects"
-            src="./src/assets/ui/preview_imgs/da_projects_preview.svg" alt="da-projects vibes theme preview" hidden />
+            <img class="settings__preview-img" data-theme="food" src="./src/assets/ui/preview_imgs/food_preview.svg"
+              alt="Foods theme preview" hidden />
+          </div>
 
-          <img class="settings__preview-img" data-theme="food" src="./src/assets/ui/preview_imgs/food_preview.svg"
-            alt="Foods theme preview" hidden />
-
+          <div class="settings__summary">
+            <span class="settings__summary-item">Game theme</span>
+            <span class="settings__summary-item">Player</span>
+            <span class="settings__summary-item">Board size</span>
+            <button class="settings__start" id="start-btn">
+              <img src="./src/assets/icons/setting_icons/smart_display.svg" alt="">
+              Start
+            </button>
+          </div>
         </div>
       </div>
     </section>

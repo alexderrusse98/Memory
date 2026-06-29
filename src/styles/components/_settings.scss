@@ -1,5 +1,7 @@
 @use '../variables' as *;
 @use '../functions.scss' as *;
+@use 'sass:color';
+
 
 .settings {
   min-height: 100vh;
@@ -50,6 +52,15 @@
     background-color: #f0e96e;
   }
 
+  &__right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-top: 6.75rem;
+  }
+
   &__preview {
     flex: 1;
   }
@@ -89,12 +100,13 @@
 
   &__option {
     display: flex;
-    width: fit-content;
     align-items: center;
+    width: fit-content;
     gap: 0.5rem;
     cursor: pointer;
     padding: 0.25rem 0;
     padding-left: 2.75rem;
+    position: relative;
   }
 
 
@@ -120,18 +132,86 @@
     background-color: $color-black;
   }
 
-
-  &__marker {
-    font-size: rem(20);
-    opacity: 0;
-    color: #e8e85c;
-  }
-
   &__label {
     font-size: rem(20);
   }
 
-  &__option input[type='radio']:checked~&__marker {
-    opacity: 1;
+  &__option:has(input:checked)::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    margin-left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 41px;
+    background-color: #f0e96e;
+  }
+
+  &__option:has(input:checked)::before {
+    content: '';
+    position: absolute;
+    left: 100%;
+    margin-left: 3.4rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background-color: #f0e96e;
+  }
+
+  &__summary {
+    width: 550px;
+    height: 81px;
+    background-color: $btn-play-bg-btn;
+    display: flex;
+    align-items: center;
+    gap: rem(18);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: rem(20);
+  }
+
+  &__start {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: $btn-play-bg;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+
+    font-size: rem(20);
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      background-color: color.adjust($btn-play-bg, $lightness: -20%);
+    }
+  }
+
+  &__summary-item {
+    position: relative; // Anker für das ::after
+    padding-right: 1.5rem; // Platz für den Strich rechts daneben
+    white-space: nowrap;
+  }
+
+  &__summary-item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(20deg); // mittig + schräg
+    width: 8px;
+    height: 56px;
+    background-color: #f0e96e;
+  }
+
+  &__summary-item:last-of-type::after {
+    display: none;
+    padding-right: 0;
+  }
+
+  &__summary-item:last-of-type {
+    padding-right: 0;
   }
 }
