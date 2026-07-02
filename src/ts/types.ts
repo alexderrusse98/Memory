@@ -1,6 +1,6 @@
 export type Theme = 'code-vibes' | 'games' | 'da-projects' | 'food';
 
-export type BoardSize =  '4x4' | '5x4' | '6x6';
+export type BoardSize =  '16' | '24' | '32';
 
 export interface Player {
     name: string;
@@ -8,7 +8,7 @@ export interface Player {
     color: 'orange' | 'blue';
 }
 
-export interface CardDate {
+export interface CardData {
     id: number;
     pairID: number;
     theme: Theme;
@@ -17,14 +17,14 @@ export interface CardDate {
     isMatched: boolean;
 }
 
-export interface Gamesettings{
+export interface GameSettings{
     theme: Theme;
     boardSize: BoardSize;
     players: [Player, Player];
 }
 
 export interface GameState {
-    settings: Gamesettings;
+    settings: GameSettings;
     cards: CardData[];
     currentPlayerIndex: 0 | 1;
     flippedCards: CardData[];
