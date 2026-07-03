@@ -1,4 +1,5 @@
 import './styles/style.scss';
+import { createCards } from './ts/game';
 import { showScreen } from './ts/router';
 import { gameSettings } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
@@ -46,5 +47,6 @@ startGameBtn?.addEventListener('click', () => {
         gameSettings.players[1].color = 'blue';
     }
     showScreen('game-screen');
+    createCards()
 });
 
