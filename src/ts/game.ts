@@ -6,8 +6,18 @@ export function createCards() {
     const pairCount = cardCount / 2;
     const selectedIcons = themeIcons[gameSettings.theme].slice(0, pairCount);
     const cardIcons = selectedIcons.concat(selectedIcons);
-    cardIcons.sort(() => Math.random() - 0.5);
-    console.log('Selected Icons:', cardIcons);
+
+    const cards = cardIcons.map((icon, index) => ({
+        id: index,
+        pairID: index % pairCount,
+        theme: gameSettings.theme,
+        imageUrl: icon,
+        isFlipped: false,
+        isMatched: false,
+    }));
+    cards.sort(() => Math.random() - 0.5);
+    console.log(cards);
+
 }
 
 //Fisher-Yates-Shuffle
