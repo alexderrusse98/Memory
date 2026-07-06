@@ -23,16 +23,35 @@ export function createCards() {
 const board = document.getElementById('board');
 
 export function renderBoard(cards: CardData[]) {
+    board?.classList.add(`board--${cards.length}`);
     cards.forEach((card) => {
         const cardElement = document.createElement('div');
-        cardElement.classList.add('card');                
+        cardElement.classList.add('card');
+        cardElement.dataset.id = String(card.id);
+
+        const inner = document.createElement('div');
+        inner.classList.add('card__inner');
+
+        const front = document.createElement('div');
+        front.classList.add('card__front');
+
+        const frontImg = document.createElement('img');
+        frontImg.src = `/src/assets/icons/${card.theme}/${card.imageUrl}`;
+        frontImg.alt = '';
+
+        const back = document.createElement('div');
+        back.classList.add('card__back');
+
+        const backImg = document.createElement('img');
+        backImg.src = `/src/assets/icons/${card.theme}/back-icon.svg`;
+        backImg.alt = '';
         
-        const img = document.createElement('img');
-        img.src = `/src/assets/icons/${card.theme}/${card.imageUrl}`;
-        img.alt = '';
-        
-        cardElement.appendChild(img);
-        board?.appendChild(cardElement);                      
+        cardElement.appendChild(inner);
+        inner.appendChild(front);
+        front.appendChild(frontImg);
+        inner.appendChild(back);
+        back.appendChild(backImg);
+        board?.appendChild(cardElement);
     });
 }
 

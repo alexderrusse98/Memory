@@ -1,6 +1,6 @@
 export type Theme = 'code-vibes' | 'games' | 'da-projects' | 'food';
 
-export type BoardSize =  '16' | '24' | '32';
+export type BoardSize =  '16' | '24' | '36';
 
 export interface Player {
     name: string;

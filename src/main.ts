@@ -46,7 +46,7 @@ startGameBtn?.addEventListener('click', () => {
         gameSettings.players[0].color = 'orange';
         gameSettings.players[1].color = 'blue';
     }
-    const cards = createCards();   // Karten erzeugen
+    const cards = createCards();  
     renderBoard(cards);
     showScreen('game-screen');
   
