@@ -1,5 +1,5 @@
 import './styles/style.scss';
-import { createCards } from './ts/game';
+import { createCards, renderBoard } from './ts/game';
 import { showScreen } from './ts/router';
 import { gameSettings } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
@@ -46,7 +46,9 @@ startGameBtn?.addEventListener('click', () => {
         gameSettings.players[0].color = 'orange';
         gameSettings.players[1].color = 'blue';
     }
+    const cards = createCards();   // Karten erzeugen
+    renderBoard(cards);
     showScreen('game-screen');
-    createCards()
+  
 });
 

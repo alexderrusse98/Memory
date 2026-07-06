@@ -1,5 +1,6 @@
 import { gameSettings } from './state';
 import { themeIcons } from './themeIcon';
+import { CardData } from './types';
 
 export function createCards() {
     const cardCount = Number(gameSettings.boardSize);
@@ -16,8 +17,23 @@ export function createCards() {
         isMatched: false,
     }));
     cards.sort(() => Math.random() - 0.5);
-    console.log(cards);
+    return cards;
+}
 
+const board = document.getElementById('board');
+
+export function renderBoard(cards: CardData[]) {
+    cards.forEach((card) => {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');                
+        
+        const img = document.createElement('img');
+        img.src = `/src/assets/icons/${card.theme}/${card.imageUrl}`;
+        img.alt = '';
+        
+        cardElement.appendChild(img);
+        board?.appendChild(cardElement);                      
+    });
 }
 
 //Fisher-Yates-Shuffle
