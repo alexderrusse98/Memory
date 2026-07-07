@@ -45,7 +45,7 @@ export function renderBoard(cards: CardData[]) {
         const backImg = document.createElement('img');
         backImg.src = `/src/assets/icons/${card.theme}/back-icon.svg`;
         backImg.alt = '';
-        
+
         cardElement.appendChild(inner);
         inner.appendChild(front);
         front.appendChild(frontImg);
@@ -54,5 +54,14 @@ export function renderBoard(cards: CardData[]) {
         board?.appendChild(cardElement);
     });
 }
+
+board?.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const cardElement = target.closest('.card') as HTMLElement;
+    if (!cardElement) return;
+    cardElement.classList.toggle('is-flipped');
+    console.log(cardElement);
+});
+
 
 //Fisher-Yates-Shuffle
