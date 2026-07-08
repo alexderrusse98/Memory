@@ -138,9 +138,35 @@
     </section>
 
     <section class="gamesField" id="game-screen">
+      <div class="scoreboard">
+        <div class="scoreboard__scores">
+
+          <span class="score-badge" id="score-player-1">
+            <img class="score-badge__icon" id="icon-player-1" src="" alt="" />
+            <span id="value-player-1">0</span>
+          </span>
+
+          <span class="score-badge" id="score-player-2">
+            <img class="score-badge__icon" id="icon-player-2" src="" alt="" />
+            <span id="value-player-2">0</span>
+          </span>
+
+        </div>
+
+        <div class="scoreboard__current">
+          Current player:
+          <span class="current-player-badge" id="current-player-badge">
+            <img id="current-player-icon" src="" alt="" />
+          </span>
+        </div>
+
+        <button class="exit-btn" id="exit-game-btn">
+          <span>&#8594;</span> Exit game
+        </button>
+      </div>
+
       <div class="board" id="board"></div>
     </section>
-
   </main>
 
 
