@@ -1,6 +1,8 @@
-import { gameSettings } from './state';
+import { gameSettings, gameState } from './state';
 import { themeIcons } from './themeIcon';
 import { CardData } from './types';
+
+const board = document.getElementById('board');
 
 export function createCards() {
     const cardCount = Number(gameSettings.boardSize);
@@ -16,11 +18,13 @@ export function createCards() {
         isFlipped: false,
         isMatched: false,
     }));
+
     cards.sort(() => Math.random() - 0.5);
+    gameState.cards = cards;
     return cards;
 }
 
-const board = document.getElementById('board');
+
 
 export function renderBoard(cards: CardData[]) {
     board?.classList.add(`board--${cards.length}`);
@@ -56,12 +60,41 @@ export function renderBoard(cards: CardData[]) {
 }
 
 board?.addEventListener('click', (event) => {
+    if (gameState.isLocked === true) return;
     const target = event.target as HTMLElement;
     const cardElement = target.closest('.card') as HTMLElement;
     if (!cardElement) return;
     cardElement.classList.toggle('is-flipped');
-    console.log(cardElement);
+    const clickedCard = gameState.cards.find((card) => card.id === Number(cardElement.dataset.id));
+    if (!clickedCard) return;
+    gameState.flippedCards.push(clickedCard);
+    if (gameState.flippedCards.length === 2) {
+        gameState.isLocked = true;
+        checkForMatch();
+        console.log('zwei Karten aufgedeckt!', gameState.isLocked);
+    }
 });
+
+function checkForMatch() {
+    if (gameState.flippedCards[0].pairID === gameState.flippedCards[1].pairID) {
+        gameState.flippedCards[0].isMatched = true;
+        gameState.flippedCards[1].isMatched = true;
+        gameState.flippedCards = [];
+        gameState.isLocked = false;
+    } else {
+        setTimeout(() => {
+            gameState.flippedCards.forEach((card) => {
+                const cardElement = document.querySelector(`.card[data-id="${card.id}"]`);
+                cardElement?.classList.remove('is-flipped');
+
+            });
+            gameState.flippedCards = [];
+            gameState.isLocked = false;
+        }, 1000);
+    }
+
+}
+
 
 
 //Fisher-Yates-Shuffle

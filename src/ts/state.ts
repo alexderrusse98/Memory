@@ -1,4 +1,4 @@
-import type { GameSettings } from './types';
+import type { GameSettings, GameState } from './types';
 
 export const gameSettings: GameSettings = {
     theme: 'code-vibes',
@@ -8,3 +8,12 @@ export const gameSettings: GameSettings = {
         { name: 'Player 2', score: 0, color: 'orange' },
     ],
 }
+
+export const gameState: GameState = {
+  settings: gameSettings,      
+  cards: [],            
+  currentPlayerIndex: 0,
+  flippedCards: [],
+  isLocked: false,
+  moves: 0,
+};
