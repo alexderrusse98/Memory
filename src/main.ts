@@ -1,5 +1,5 @@
 import './styles/style.scss';
-import { createCards, renderBoard } from './ts/game';
+import { createCards, renderBoard, exitGame } from './ts/game';
 import { showScreen } from './ts/router';
 import { gameSettings } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
@@ -25,6 +25,8 @@ themeRadios.forEach((radio) => {
 // home play btn
 const playBtn = document.getElementById('play-btn');
 
+const gameScreen = document.getElementById('game-screen');
+
 playBtn?.addEventListener('click', () => {
     showScreen('settings-screen');
 });
@@ -36,6 +38,7 @@ startGameBtn?.addEventListener('click', () => {
     const board = (document.querySelector('input[name="board"]:checked') as HTMLInputElement).value as BoardSize;
 
     gameSettings.theme = theme;
+    gameScreen?.setAttribute('data-theme', theme);
     gameSettings.boardSize = board;
     if (player === 'blue') {
         gameSettings.players[0].color = 'blue';
@@ -44,9 +47,15 @@ startGameBtn?.addEventListener('click', () => {
         gameSettings.players[0].color = 'orange';
         gameSettings.players[1].color = 'blue';
     }
-    const cards = createCards();  
+    const cards = createCards();
     renderBoard(cards);
     showScreen('game-screen');
-  
+
 });
 
+const exitBtn = document.getElementById('exit-game-btn');
+
+exitBtn?.addEventListener('click', () => {
+    exitGame();
+    showScreen('settings-screen');
+});

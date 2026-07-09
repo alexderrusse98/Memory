@@ -106,27 +106,34 @@ function checkForMatch() {
 function updateScoreboard() {
     const player1Score = document.getElementById('value-player-1');
     const player2Score = document.getElementById('value-player-2');
-    const player1Icon = document.getElementById('icon-player-1');
-    const player2Icon = document.getElementById('icon-player-2');
-    const player1IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[0].color}.svg`;
-    const player2IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[1].color}.svg`;
+
     if (player1Score) {
         player1Score.textContent = String(gameState.settings.players[0].score);
-
     }
     if (player2Score) {
         player2Score.textContent = String(gameState.settings.players[1].score);
-
     }
-    if (player1Icon) {
-        player1Icon.setAttribute('src', player1IconPath);
-    }
-    if (player2Icon) {
-        player2Icon.setAttribute('src', player2IconPath);
-    }
-
+    updateCurrentPlayer();
 }
 
+function setIconSrc(elementId: string, path: string) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.setAttribute('src', path);
+    }
+}
 
+function updateCurrentPlayer() {
+    const player1IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[0].color}.svg`;
+    const player2IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[1].color}.svg`;
+    const currentPlayerIconPath = gameState.currentPlayerIndex === 0 ? player1IconPath : player2IconPath;
 
+    setIconSrc('icon-player-1', player1IconPath);
+    setIconSrc('icon-player-2', player2IconPath);
+    setIconSrc('current-player-icon', currentPlayerIconPath);
+}
+
+export function exitGame(){
+    
+}
 //Fisher-Yates-Shuffle

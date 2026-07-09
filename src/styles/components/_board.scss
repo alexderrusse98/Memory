@@ -1,13 +1,20 @@
-.board{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
+@use '../variables' as *;
 
-    &--24, &--36 {
-        grid-template-columns: repeat(6, 1fr);
-    }
+.gamesField {
+  min-height: 100vh;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &--24,
+  &--36 {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 .card {
@@ -40,4 +47,122 @@
 
 .card__front {
   transform: rotateY(180deg);
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.scoreboard__scores {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.score-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: $font-weight-semibold;
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.scoreboard__current {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: $font-weight-semibold;
+}
+
+.current-player-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.exit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  font-weight: $font-weight-semibold;
+}
+
+[data-theme='code-vibes'] {
+  &.gamesField {
+    background-color: $games-screen-bg;
+  }
+
+
+  .scoreboard {
+    background-color: $games-screen-bg;
+    color: $color-white;
+  }
+
+  .exit-btn {
+    background-color: $btn-exit-code-bg;
+    color: $color-white;
+  }
+
+  .current-player-badge {
+    background-color: transparent;
+  }
+}
+
+[data-theme='food'] {
+  .scoreboard {
+    background-color: $games-screen-bg-food-scoreboard;
+  }
+
+  .exit-btn {
+    background-color: $games-screen-bg-food-scoreboard-exit;
+    color: $player-orange;
+
+    &-icon {
+      color: $player-orange;
+    }
+  }
+}
+
+
+[data-theme='games'] {
+  .scoreboard {
+    background-color: $games-screen-bg-scoreboard;
+  }
+
+  .exit-btn {
+    background-color: $games-screen-bg-scoreboard-exit;
+  }
+}
+
+[data-theme='da-projects'] {
+  .scoreboard {
+    background-color: $games-screen-bg-da-projects-scoreboard;
+  }
+
+  .exit-btn {
+    background-color: $games-screen-bg-da-projects-scoreboard-exit;
+  }
 }

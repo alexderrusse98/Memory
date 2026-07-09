@@ -13,18 +13,32 @@ $btn-play-bg-btn: #f6f6f6;
 $theme-code-bg: #134659;
 $btn-exit-code-bg: #303231;
 $btn-back-code-bg: #66cfbc;
+$games-screen-bg: #2f3231; // + scoreboard
+$games-screen-bg-scoreboard: #415752; //scoreboard playerbg & exit
 
 // Games
 $theme-games-bg: #23789d;
 $btn-games-bg: #2a4f61;
 $btn-back-games-bg: #ec1c77;
+$games-screen-bg-games: #2a4f60;
+$games-screen-bg-scoreboard: #535d75;
+$games-screen-bg-scoreboard-exit: #5f5875;
 
 // Da-Projects
 $theme-da-projects-bg: #bfe5f2;
 $btn-exit-da-projects-bg: #1d7594;
 $btn-back-da-projects-bg: #e75d53;
+$games-screen-bg-da-projects-scoreboard: #eff3f4;
+$games-screen-bg-da-projects-scoreboard-exit: #bfe6f2;
+
 
 // Food 
 $theme-food-bg: #e7e2dc;
 $btn-exit-food-bg: #f3822d;
 $btn-back-food-bg: #feab3e;
+$games-screen-bg-food-scoreboard: #f0e5d8;
+$games-screen-bg-food-scoreboard-exit: #fff9f1;
+
+
+$player-blue: #087fc4;
+$player-orange: #e36b0b;
