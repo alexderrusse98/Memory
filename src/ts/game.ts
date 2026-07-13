@@ -133,7 +133,14 @@ function updateCurrentPlayer() {
     setIconSrc('current-player-icon', currentPlayerIconPath);
 }
 
-export function exitGame(){
-    
+export function exitGame() {
+    gameState.cards = [];
+    gameState.flippedCards = [];
+    gameState.currentPlayerIndex = 0;
+    gameState.isLocked = false;
+    gameState.settings.players[0].score = 0;
+    gameState.settings.players[1].score = 0;
+    board?.replaceChildren();
+    board?.classList.remove('board--16', 'board--24', 'board--36')
 }
 //Fisher-Yates-Shuffle
