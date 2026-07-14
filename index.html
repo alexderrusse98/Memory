@@ -137,7 +137,7 @@
       </div>
     </section>
 
-    <section class="gamesField" id="game-screen">
+    <section class="gamesField" id="game-screen" hidden>
       <div class="scoreboard">
         <div class="scoreboard__scores">
 
@@ -167,6 +167,46 @@
 
       <div class="board" id="board"></div>
     </section>
+
+
+
+    
+    <section class="gameover-screen" id="gameover-screen" hidden>
+      <div class="gameover-screen__content">
+        <h1>Game over</h1>
+        <p>Final score</p>
+        <div class="gameover-screen__scores">
+          <span class="score-badge">
+            <img id="gameover-icon-player-1" src="" alt="" />
+            <span id="gameover-value-player-1">0</span>
+          </span>
+          <span class="score-badge">
+            <img id="gameover-icon-player-2" src="" alt="" />
+            <span id="gameover-value-player-2">0</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="winner-screen" id="winner-screen" hidden>
+      <div class="winner-screen__content">
+        <p>The winner is</p>
+        <h1 id="winner-name">Player</h1>
+        <img id="winner-icon" src="" alt="" />
+        <button id="winner-home-btn">Home</button>
+      </div>
+    </section>
+
+    <section class="draw-screen" id="draw-screen" hidden>
+      <div class="draw-screen__content">
+        <h1>It's a DRAW</h1>
+        <img src="" alt="" id="draw-icon" />
+        <button id="draw-home-btn">Home</button>
+      </div>
+    </section>
+
+
+
   </main>
 
 

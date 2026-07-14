@@ -53,9 +53,21 @@ startGameBtn?.addEventListener('click', () => {
 
 });
 
+
 const exitBtn = document.getElementById('exit-game-btn');
 
 exitBtn?.addEventListener('click', () => {
     exitGame();
     showScreen('settings-screen');
 });
+
+function goHome() {
+    exitGame();
+    showScreen('home-screen');
+}
+
+const homeBtn = document.getElementById('winner-home-btn');
+const drawHomeBtn = document.getElementById('draw-home-btn');
+
+homeBtn?.addEventListener('click', goHome);
+drawHomeBtn?.addEventListener('click', goHome);

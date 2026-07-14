@@ -1,6 +1,7 @@
 import { gameSettings, gameState } from './state';
 import { themeIcons } from './themeIcon';
 import { CardData } from './types';
+import { showScreen } from './router';
 
 const board = document.getElementById('board');
 
@@ -84,6 +85,9 @@ function checkForMatch() {
         gameState.flippedCards = [];
         gameState.isLocked = false;
         gameState.settings.players[gameState.currentPlayerIndex].score += 1;
+        if (gameState.cards.every((card) => card.isMatched === true)) {
+            getGameover();
+        }
         updateScoreboard();
     } else {
         setTimeout(() => {
@@ -96,10 +100,55 @@ function checkForMatch() {
             gameState.isLocked = false;
             gameState.currentPlayerIndex = (1 - gameState.currentPlayerIndex) as 0 | 1;
             updateScoreboard();
-        }, 1000);
+        }, 500);
 
     }
 
+}
+
+function getGameover() {
+
+    const player1IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[0].color}.svg`;
+    const player2IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[1].color}.svg`;
+
+    const player1EndScore = document.getElementById('gameover-value-player-1');
+    const player2EndScore = document.getElementById('gameover-value-player-2');
+
+    if (player1EndScore) {
+        player1EndScore.textContent = String(gameState.settings.players[0].score);
+    }
+    if (player2EndScore) {
+        player2EndScore.textContent = String(gameState.settings.players[1].score);
+    }
+
+    setIconSrc('gameover-icon-player-1', player1IconPath);
+    setIconSrc('gameover-icon-player-2', player2IconPath);
+    showScreen('gameover-screen');
+    
+    setTimeout(() => {
+        getWinner();
+    }, 2000);
+}
+
+
+function getWinner() {
+    const player1 = gameState.settings.players[0];
+    const player2 = gameState.settings.players[1];
+    const winPlayer = document.getElementById('winner-name');
+
+    if (player1.score > player2.score) {
+        if (winPlayer) {
+            winPlayer.textContent = player1.name;
+        }
+        showScreen('winner-screen');
+    } else if (player2.score > player1.score) {
+        if (winPlayer) {
+            winPlayer.textContent = player2.name;
+        }
+        showScreen('winner-screen');
+    } else {
+        showScreen('draw-screen');
+    }
 }
 
 
@@ -143,4 +192,6 @@ export function exitGame() {
     board?.replaceChildren();
     board?.classList.remove('board--16', 'board--24', 'board--36')
 }
+
+
 //Fisher-Yates-Shuffle
