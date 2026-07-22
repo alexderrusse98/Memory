@@ -1,0 +1,118 @@
+@use '../variables' as *;
+@use '../functions' as *;
+
+.gameover-screen__title-img {
+    display: none;
+}
+
+.gameover-screen,
+.winner-screen,
+.draw-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.gameover-screen__content,
+.winner-screen__content,
+.draw-screen__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.gameover-screen__scores {
+    display: flex;
+    justify-content: center;
+    width: rem(323);
+}
+
+.winner-screen__content img,
+.draw-screen__content img {
+    width: 64px;
+    height: 64px;
+}
+
+.winner-screen button,
+.draw-screen button {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: $font-weight-semibold;
+}
+
+
+[data-theme='code-vibes'] {
+
+    &.gamesField,
+    &.gameover-screen,
+    &.winner-screen,
+    &.draw-screen {
+        background-color: $games-screen-bg;
+    }
+
+    &.gameover-screen {
+        h1 {
+            display: none;
+        }
+
+        .gameover-screen__title-img {
+            display: block;
+            width: rem(990);
+            height: auto;
+        }
+
+        p {
+            font-family: 'Red_Rose';
+            font-size: 26px;
+            color: white;
+        }
+
+        &.gameover-screen {
+            .gameover-screen__scores {
+                background-color: $games-code-screen-bg-scoreboard;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+[data-theme='games'] {
+
+    &.gamesField,
+    &.gameover-screen,
+    &.winner-screen,
+    &.draw-screen {
+        background-color: $games-screen-bg-scoreboard;
+    }
+}
+
+[data-theme='da-projects'] {
+
+    &.gamesField,
+    &.gameover-screen,
+    &.winner-screen,
+    &.draw-screen {
+        background-color: $theme-da-projects-bg;
+    }
+}
+
+[data-theme='food'] {
+
+    &.gamesField,
+    &.gameover-screen,
+    &.winner-screen,
+    &.draw-screen {
+        background-color: $theme-food-bg;
+    }
+}

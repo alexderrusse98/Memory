@@ -143,11 +143,13 @@
 
           <span class="score-badge" id="score-player-1">
             <img class="score-badge__icon" id="icon-player-1" src="" alt="" />
+            <span id="score-color-player-1"></span>
             <span id="value-player-1">0</span>
           </span>
 
           <span class="score-badge" id="score-player-2">
             <img class="score-badge__icon" id="icon-player-2" src="" alt="" />
+            <span id="score-color-player-2"></span>
             <span id="value-player-2">0</span>
           </span>
 
@@ -170,23 +172,31 @@
 
 
 
-    
+
     <section class="gameover-screen" id="gameover-screen" hidden>
       <div class="gameover-screen__content">
         <h1>Game over</h1>
+        <img class="gameover-screen__title-img" src="/src/assets/icons/code-vibes/gameOver.svg" alt="Game over" />
         <p>Final score</p>
         <div class="gameover-screen__scores">
-          <span class="score-badge">
+          <span class="score-badge" id="gameover-score-player-1">
             <img id="gameover-icon-player-1" src="" alt="" />
+            <span id="gameover-color-player-1"></span>
             <span id="gameover-value-player-1">0</span>
           </span>
-          <span class="score-badge">
+
+          <span class="score-badge" id="gameover-score-player-2">
             <img id="gameover-icon-player-2" src="" alt="" />
+            <span id="gameover-color-player-2"></span>
             <span id="gameover-value-player-2">0</span>
           </span>
         </div>
       </div>
     </section>
+
+
+
+
 
     <section class="winner-screen" id="winner-screen" hidden>
       <div class="winner-screen__content">

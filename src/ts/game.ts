@@ -121,15 +121,25 @@ function getGameover() {
         player2EndScore.textContent = String(gameState.settings.players[1].score);
     }
 
+    setColorLabel('gameover-color-player-1', gameState.settings.players[0].color);
+    setColorLabel('gameover-color-player-2', gameState.settings.players[1].color);
+
+    document.getElementById('gameover-screen')?.setAttribute('data-theme', gameState.settings.theme);
+    document.getElementById('winner-screen')?.setAttribute('data-theme', gameState.settings.theme);
+    document.getElementById('draw-screen')?.setAttribute('data-theme', gameState.settings.theme);
+
     setIconSrc('gameover-icon-player-1', player1IconPath);
     setIconSrc('gameover-icon-player-2', player2IconPath);
     showScreen('gameover-screen');
-    
-    setTimeout(() => {
-        getWinner();
-    }, 2000);
+
 }
 
+function setColorLabel(elementId: string, color: string) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = gameState.settings.theme === 'code-vibes' ? color : '';
+    }
+}
 
 function getWinner() {
     const player1 = gameState.settings.players[0];
@@ -162,6 +172,9 @@ function updateScoreboard() {
     if (player2Score) {
         player2Score.textContent = String(gameState.settings.players[1].score);
     }
+    
+    setColorLabel('score-color-player-1', gameState.settings.players[0].color);
+    setColorLabel('score-color-player-2', gameState.settings.players[1].color);
     updateCurrentPlayer();
 }
 

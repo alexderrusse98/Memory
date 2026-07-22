@@ -4,6 +4,7 @@ import { showScreen } from './ts/router';
 import { gameSettings } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
 
+
 // Alle Theme-Radios greifen
 const themeRadios = document.querySelectorAll('input[name="theme"]');
 // Alle Vorschaubilder greifen
