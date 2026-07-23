@@ -106,6 +106,14 @@ function checkForMatch() {
 
 }
 
+function setPlayerColorClass(elementId: string, color: string) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.classList.remove('is-blue', 'is-orange');
+        element.classList.add(color === 'blue' ? 'is-blue' : 'is-orange');
+    }
+}
+
 function getGameover() {
 
     const player1IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[0].color}.svg`;
@@ -132,6 +140,8 @@ function getGameover() {
     setIconSrc('gameover-icon-player-2', player2IconPath);
     showScreen('gameover-screen');
 
+    setPlayerColorClass('gameover-score-player-1', gameState.settings.players[0].color);
+    setPlayerColorClass('gameover-score-player-2', gameState.settings.players[1].color);
 }
 
 function setColorLabel(elementId: string, color: string) {
@@ -172,9 +182,11 @@ function updateScoreboard() {
     if (player2Score) {
         player2Score.textContent = String(gameState.settings.players[1].score);
     }
-    
+    setPlayerColorClass('score-group-player-1', gameState.settings.players[0].color);
+    setPlayerColorClass('score-group-player-2', gameState.settings.players[1].color);
     setColorLabel('score-color-player-1', gameState.settings.players[0].color);
     setColorLabel('score-color-player-2', gameState.settings.players[1].color);
+
     updateCurrentPlayer();
 }
 
