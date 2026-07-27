@@ -1,6 +1,17 @@
 @use '../variables' as *;
 @use '../functions' as *;
 
+
+#winner-name {
+    &.is-blue {
+        color: $player-blue;
+    }
+
+    &.is-orange {
+        color: $player-orange;
+    }
+}
+
 .gameover-screen__title-img {
     display: none;
 }
@@ -15,6 +26,16 @@
     text-align: center;
 }
 
+.winner-screen {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    &confetti {
+        width: 1233px;
+        height: 358px;
+    }
+}
+
 .gameover-screen__content,
 .winner-screen__content,
 .draw-screen__content {
@@ -22,6 +43,19 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+}
+
+.winner-screen__label {
+    color: $color-white;
+    font-size: 40px;
+    font-family: 'Red_Rose';
+    font-weight: 400;
+}
+
+.winner-screen__content h1 {
+    font-size: 60px;
+    font-family: 'Red_Rose';
+    font-weight: 600;
 }
 
 .gameover-screen__scores {
@@ -32,8 +66,8 @@
 
 .winner-screen__content img,
 .draw-screen__content img {
-    width: 64px;
-    height: 64px;
+    width: 200px;
+    height: 250px;
 }
 
 .winner-screen button,
@@ -45,7 +79,6 @@
     cursor: pointer;
     font-weight: $font-weight-semibold;
 }
-
 
 [data-theme='code-vibes'] {
 
@@ -100,8 +133,16 @@
                 }
             }
         }
-
     }
+
+    .home-btn {
+        font-family: 'Red_Rose';
+        font-size: 24px;
+        background-color: $games-code-screen-bg-scoreboard;
+        border: 1px solid #517671;
+        color: $color-white;
+    }
+
 }
 
 

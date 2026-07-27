@@ -25,8 +25,6 @@ export function createCards() {
     return cards;
 }
 
-
-
 export function renderBoard(cards: CardData[]) {
     board?.classList.add(`board--${cards.length}`);
     cards.forEach((card) => {
@@ -142,6 +140,10 @@ function getGameover() {
 
     setPlayerColorClass('gameover-score-player-1', gameState.settings.players[0].color);
     setPlayerColorClass('gameover-score-player-2', gameState.settings.players[1].color);
+
+    setTimeout(() => {
+        getWinner();
+    }, 2000);
 }
 
 function setColorLabel(elementId: string, color: string) {
@@ -151,26 +153,39 @@ function setColorLabel(elementId: string, color: string) {
     }
 }
 
+function setHomeButtonText(elementId: string) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = gameState.settings.theme === 'code-vibes' ? 'Back to start' : 'Home';
+    }
+}
+
 function getWinner() {
     const player1 = gameState.settings.players[0];
     const player2 = gameState.settings.players[1];
     const winPlayer = document.getElementById('winner-name');
 
+    setHomeButtonText('winner-home-btn');
+    setHomeButtonText('draw-home-btn');
+
     if (player1.score > player2.score) {
         if (winPlayer) {
             winPlayer.textContent = player1.name;
         }
+        setPlayerColorClass('winner-name', player1.color);
+        setIconSrc('winner-icon', `/src/assets/icons/players/player-${player1.color}.svg`);
         showScreen('winner-screen');
     } else if (player2.score > player1.score) {
         if (winPlayer) {
             winPlayer.textContent = player2.name;
         }
+        setPlayerColorClass('winner-name', player2.color);
+        setIconSrc('winner-icon', `/src/assets/icons/players/player-${player2.color}.svg`);
         showScreen('winner-screen');
     } else {
         showScreen('draw-screen');
     }
 }
-
 
 function updateScoreboard() {
     const player1Score = document.getElementById('value-player-1');
@@ -194,6 +209,7 @@ function setIconSrc(elementId: string, path: string) {
     const element = document.getElementById(elementId);
     if (element) {
         element.setAttribute('src', path);
+
     }
 }
 
