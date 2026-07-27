@@ -64,6 +64,12 @@
     width: rem(323);
 }
 
+.draw-screen__content,
+.draw-screen__title-img {
+    width: 420px;
+    height: 78px;
+}
+
 .winner-screen__content img,
 .draw-screen__content img {
     width: 200px;
@@ -146,7 +152,13 @@
 }
 
 
+.draw-screen__title-text {
+    display: none;
+}
 
+.draw-screen__title-img {
+    display: block;
+}
 
 
 
@@ -178,5 +190,15 @@
     &.winner-screen,
     &.draw-screen {
         background-color: $theme-food-bg;
+    }
+
+    &.draw-screen {
+        .draw-screen__title-text {
+            display: block;
+        }
+
+        .draw-screen__title-img {
+            display: none;
+        }
     }
 }

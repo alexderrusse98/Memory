@@ -38,6 +38,7 @@ startGameBtn?.addEventListener('click', () => {
     const player = (document.querySelector('input[name="player"]:checked') as HTMLInputElement).value;
     const board = (document.querySelector('input[name="board"]:checked') as HTMLInputElement).value as BoardSize;
 
+  
     gameSettings.theme = theme;
     gameScreen?.setAttribute('data-theme', theme);
     gameSettings.boardSize = board;
@@ -72,3 +73,4 @@ const drawHomeBtn = document.getElementById('draw-home-btn');
 
 homeBtn?.addEventListener('click', goHome);
 drawHomeBtn?.addEventListener('click', goHome);
+

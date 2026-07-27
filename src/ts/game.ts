@@ -164,7 +164,7 @@ function getWinner() {
     const player1 = gameState.settings.players[0];
     const player2 = gameState.settings.players[1];
     const winPlayer = document.getElementById('winner-name');
-
+    
     setHomeButtonText('winner-home-btn');
     setHomeButtonText('draw-home-btn');
 
@@ -183,6 +183,10 @@ function getWinner() {
         setIconSrc('winner-icon', `/src/assets/icons/players/player-${player2.color}.svg`);
         showScreen('winner-screen');
     } else {
+        const scalePath = `/src/assets/icons/scales/scale-${gameState.settings.theme}.svg`;
+        const drawTitleImgPath = `/src/assets/icons/${gameState.settings.theme}/draw-${gameState.settings.theme}.svg`;
+        setIconSrc('draw-icon', scalePath);
+        setIconSrc('draw-title-img', drawTitleImgPath);
         showScreen('draw-screen');
     }
 }
