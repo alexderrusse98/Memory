@@ -44,7 +44,7 @@
     align-items: center;
     gap: 2rem;
 }
-
+.draw-screen__label,
 .winner-screen__label {
     color: $color-white;
     font-size: 40px;
@@ -64,14 +64,22 @@
     width: rem(323);
 }
 
-.draw-screen__content,
 .draw-screen__title-img {
     width: 420px;
     height: 78px;
 }
 
-.winner-screen__content img,
-.draw-screen__content img {
+.draw-screen__scale-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.draw-screen__scale-icon {
+    width: 339px;
+    height: 270px;
+}
+
+.winner-screen__content img {
     width: 200px;
     height: 250px;
 }
