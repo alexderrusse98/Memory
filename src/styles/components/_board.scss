@@ -77,8 +77,8 @@
   font-weight: $font-weight-semibold;
 
   &__icon {
-    width: 24px;
-    height: 20px;
+    width: 20px;
+    height: 25px;
   }
 }
 
@@ -218,8 +218,40 @@
 }
 
 [data-theme='food'] {
+
+  &.gamesField {
+    background-color: $color-white;
+  }
+
+  .score-badge__player-1-group,
+  .score-badge__player-2-group {
+    &.is-blue {
+      color: $player-blue;
+    }
+
+    &.is-orange {
+      color: $player-orange;
+    }
+  }
+
   .scoreboard {
     background-color: $games-screen-bg-food-scoreboard;
+  }
+
+  .scoreboard__scores {
+    background-color: $color-white;
+    border-radius: 10px;
+  }
+
+  .score-badge {
+    font-size: 30px;
+  }
+
+  .curennt-player-word {
+    font-size: 32px;
+    font-family: 'Klee_One';
+    font-weight: 400;
+    color: #a45212;
   }
 
   .exit-btn {
@@ -231,6 +263,8 @@
     }
   }
 }
+
+
 
 
 [data-theme='games'] {
