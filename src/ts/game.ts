@@ -141,9 +141,9 @@ function getGameover() {
     setPlayerColorClass('gameover-score-player-1', gameState.settings.players[0].color);
     setPlayerColorClass('gameover-score-player-2', gameState.settings.players[1].color);
 
-    setTimeout(() => {
-        getWinner();
-    }, 2000);
+   // setTimeout(() => {
+  //      getWinner();
+  //  }, 2000);
 }
 
 function setColorLabel(elementId: string, color: string) {
@@ -223,7 +223,7 @@ function updateCurrentPlayer() {
     const currentPlayerColor = gameState.settings.players[gameState.currentPlayerIndex].color;
     const currentPlayerIconColor = gameState.settings.theme === 'code-vibes' ? currentPlayerColor : 'white';
     const currentPlayerIconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${currentPlayerIconColor}.svg`;
-    
+
     setIconSrc('icon-player-1', player1IconPath);
     setIconSrc('icon-player-2', player2IconPath);
     setIconSrc('current-player-icon', currentPlayerIconPath);
@@ -236,13 +236,13 @@ export function updateExitDialogButtonText() {
     const theme = gameState.settings.theme;
 
     if (cancelBtn) {
-        cancelBtn.textContent = (theme === 'games' || theme === 'food') 
-            ? 'No, back to game' 
+        cancelBtn.textContent = (theme === 'games' || theme === 'food')
+            ? 'No, back to game'
             : 'Back to game';
     }
     if (confirmBtn) {
-        confirmBtn.textContent = (theme === 'games') 
-            ? 'Yes, quit game' 
+        confirmBtn.textContent = (theme === 'games')
+            ? 'Yes, quit game'
             : 'Exit game';
     }
 }

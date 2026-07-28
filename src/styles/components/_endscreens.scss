@@ -16,6 +16,16 @@
     display: none;
 }
 
+.score-badge {
+    &.is-blue {
+        color: $player-blue;
+    }
+
+    &.is-orange {
+        color: $player-orange;
+    }
+}
+
 .gameover-screen,
 .winner-screen,
 .draw-screen {
@@ -44,6 +54,7 @@
     align-items: center;
     gap: 2rem;
 }
+
 .draw-screen__label,
 .winner-screen__label {
     color: $color-white;
@@ -94,6 +105,22 @@
     font-weight: $font-weight-semibold;
 }
 
+
+.draw-screen__title-text {
+    display: none;
+}
+
+.draw-screen__title-img {
+    display: block;
+}
+
+
+
+
+
+
+
+
 [data-theme='code-vibes'] {
 
     &.gamesField,
@@ -103,15 +130,6 @@
         background-color: $games-screen-bg;
     }
 
-    .score-badge {
-        &.is-blue {
-            color: $player-blue;
-        }
-
-        &.is-orange {
-            color: $player-orange;
-        }
-    }
 
     .score-badge {
         font-size: 24px;
@@ -160,17 +178,6 @@
 }
 
 
-.draw-screen__title-text {
-    display: none;
-}
-
-.draw-screen__title-img {
-    display: block;
-}
-
-
-
-
 [data-theme='games'] {
 
     &.gamesField,
@@ -191,13 +198,35 @@
     }
 }
 
+
+
+
 [data-theme='food'] {
 
-    &.gamesField,
-    &.gameover-screen,
-    &.winner-screen,
-    &.draw-screen {
-       
+    &.gameover-screen {
+        background-color: #f3832d
+    }
+
+    .gameover-screen__content {
+        gap: 2rem;
+
+        h1,
+        p {
+            font-family: 'Klee_One';
+            font-size: 130px;
+            color: white;
+        }
+
+        p {
+            font-size: 42px;
+        }
+    }
+
+    .gameover-screen__scores {
+        background-color: white;
+        width: 220px;
+        height: 76px;
+        margin-top: -1rem;
     }
 
     &.draw-screen {
@@ -207,6 +236,14 @@
 
         .draw-screen__title-img {
             display: none;
+        }
+    }
+
+    .score-badge {
+        font-size: 40px;
+        gap: 0.2rem;
+        img {
+            height: 30px;
         }
     }
 }
