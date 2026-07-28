@@ -1,7 +1,7 @@
 import './styles/style.scss';
-import { createCards, renderBoard, exitGame } from './ts/game';
+import { createCards, renderBoard, exitGame, setIconSrc, updateExitDialogButtonText } from './ts/game';
 import { showScreen } from './ts/router';
-import { gameSettings } from './ts/state';
+import { gameSettings, gameState } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
 
 
@@ -41,6 +41,8 @@ startGameBtn?.addEventListener('click', () => {
 
     gameSettings.theme = theme;
     gameScreen?.setAttribute('data-theme', theme);
+    const exitIconPath = `/src/assets/icons/setting_icons/exit-icon-${theme}.svg`;
+    setIconSrc('exit-btn-icon', exitIconPath);
     gameSettings.boardSize = board;
     if (player === 'blue') {
         gameSettings.players[0].color = 'blue';
@@ -61,6 +63,8 @@ const exitDialog = document.getElementById('exit-confirm-dialog') as HTMLDialogE
 
 const exitBtn = document.getElementById('exit-game-btn');
 exitBtn?.addEventListener('click', () => {
+    exitDialog?.setAttribute('data-theme', gameState.settings.theme);
+    updateExitDialogButtonText();
     exitDialog?.showModal();
 });
 

@@ -164,7 +164,7 @@ function getWinner() {
     const player1 = gameState.settings.players[0];
     const player2 = gameState.settings.players[1];
     const winPlayer = document.getElementById('winner-name');
-    
+
     setHomeButtonText('winner-home-btn');
     setHomeButtonText('draw-home-btn');
 
@@ -209,22 +209,42 @@ function updateScoreboard() {
     updateCurrentPlayer();
 }
 
-function setIconSrc(elementId: string, path: string) {
+export function setIconSrc(elementId: string, path: string) {
     const element = document.getElementById(elementId);
     if (element) {
         element.setAttribute('src', path);
-
     }
 }
 
 function updateCurrentPlayer() {
     const player1IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[0].color}.svg`;
     const player2IconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${gameState.settings.players[1].color}.svg`;
-    const currentPlayerIconPath = gameState.currentPlayerIndex === 0 ? player1IconPath : player2IconPath;
 
+    const currentPlayerColor = gameState.settings.players[gameState.currentPlayerIndex].color;
+    const currentPlayerIconColor = gameState.settings.theme === 'code-vibes' ? currentPlayerColor : 'white';
+    const currentPlayerIconPath = `/src/assets/icons/${gameState.settings.theme}/player-icon-${currentPlayerIconColor}.svg`;
+    
     setIconSrc('icon-player-1', player1IconPath);
     setIconSrc('icon-player-2', player2IconPath);
     setIconSrc('current-player-icon', currentPlayerIconPath);
+    setPlayerColorClass('current-player-badge', currentPlayerColor);
+}
+
+export function updateExitDialogButtonText() {
+    const cancelBtn = document.getElementById('cancel-exit-btn');
+    const confirmBtn = document.getElementById('confirm-exit-btn');
+    const theme = gameState.settings.theme;
+
+    if (cancelBtn) {
+        cancelBtn.textContent = (theme === 'games' || theme === 'food') 
+            ? 'No, back to game' 
+            : 'Back to game';
+    }
+    if (confirmBtn) {
+        confirmBtn.textContent = (theme === 'games') 
+            ? 'Yes, quit game' 
+            : 'Exit game';
+    }
 }
 
 export function exitGame() {
