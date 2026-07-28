@@ -38,7 +38,7 @@ startGameBtn?.addEventListener('click', () => {
     const player = (document.querySelector('input[name="player"]:checked') as HTMLInputElement).value;
     const board = (document.querySelector('input[name="board"]:checked') as HTMLInputElement).value as BoardSize;
 
-  
+
     gameSettings.theme = theme;
     gameScreen?.setAttribute('data-theme', theme);
     gameSettings.boardSize = board;
@@ -55,12 +55,33 @@ startGameBtn?.addEventListener('click', () => {
 
 });
 
+// Boad Dialog
+
+const exitDialog = document.getElementById('exit-confirm-dialog') as HTMLDialogElement;
 
 const exitBtn = document.getElementById('exit-game-btn');
-
 exitBtn?.addEventListener('click', () => {
+    exitDialog?.showModal();
+});
+
+function closeExitDialog() {
+    exitDialog?.close();
+}
+
+const cancelExitBtn = document.getElementById('cancel-exit-btn');
+cancelExitBtn?.addEventListener('click', closeExitDialog);
+
+const confirmExitBtn = document.getElementById('confirm-exit-btn');
+confirmExitBtn?.addEventListener('click', () => {
+    closeExitDialog();
     exitGame();
     showScreen('settings-screen');
+});
+
+exitDialog?.addEventListener('click', (event) => {
+    if (event.target === exitDialog) {
+        exitDialog.close();
+    }
 });
 
 function goHome() {

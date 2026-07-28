@@ -131,6 +131,51 @@
   height: 22.5px;
 }
 
+.exit-dialog {
+  border: none;
+  padding: 1rem;
+  max-width: 450px;
+  max-height: 270px;
+  margin: auto;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.cancel-btn {
+  font-family: 'Red_Rose';
+  font-size: 20px;
+  width: 168px;
+  height: 57px;
+  background-color: $btn-back-code-bg;
+  color: $color-white;
+}
+
+.confirm-exit-btn {
+  font-family: 'Red_Rose';
+  font-size: 20px;
+  width: 168px;
+  height: 57px;
+  color: $btn-back-code-bg;
+  border: 3px solid $btn-back-code-bg;
+}
+
+.exit-dialog__text {
+  font-family: 'Red_Rose';
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.exit-dialog__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
 [data-theme='code-vibes'] {
   &.gamesField {
     background-color: $games-screen-bg;
