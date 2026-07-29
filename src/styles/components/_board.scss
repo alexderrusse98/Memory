@@ -4,6 +4,17 @@
   min-height: 100vh;
 }
 
+.score-badge__player-1-group,
+.score-badge__player-2-group {
+  &.is-blue {
+    color: $player-blue;
+  }
+
+  &.is-orange {
+    color: $player-orange;
+  }
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -66,6 +77,7 @@
   justify-self: start;
   height: 62px;
   gap: 0.75rem;
+  border-radius: 10px;
 }
 
 .score-badge {
@@ -75,6 +87,7 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-weight: $font-weight-semibold;
+  font-size: 30px;
 
   &__icon {
     width: 20px;
@@ -88,11 +101,6 @@
   justify-self: center;
   gap: 0.5rem;
   font-weight: $font-weight-semibold;
-}
-
-.curennt-player-word {
-  font-family: 'Red_Rose';
-  font-size: 26px;
 }
 
 
@@ -129,13 +137,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   justify-self: end;
   cursor: pointer;
   font-weight: $font-weight-semibold;
-  font-size: 24px;
-  font-family: 'Red_Rose';
+  font-size: 20px;
 }
 
 .exit-btn-icon {
@@ -148,6 +156,7 @@
   padding: 1rem;
   max-width: 450px;
   max-height: 270px;
+  border-radius: 20px;
   margin: auto;
 
   &::backdrop {
@@ -156,7 +165,7 @@
 }
 
 .cancel-btn {
-  font-family: 'Red_Rose';
+  border-radius: 10px;
   font-size: 20px;
   width: 168px;
   height: 57px;
@@ -165,8 +174,8 @@
 }
 
 .confirm-exit-btn {
-  font-family: 'Red_Rose';
   font-size: 20px;
+  border-radius: 10px;
   width: 168px;
   height: 57px;
   color: $btn-back-code-bg;
@@ -220,16 +229,38 @@
   .scoreboard {
     background-color: $games-screen-bg;
     color: $color-white;
+
+    &__scores {
+      border-radius: 0;
+    }
+  }
+
+  .curennt-player-word {
+    font-family: 'Red_Rose';
+    font-size: 26px;
   }
 
   .exit-btn {
     background-color: $games-code-screen-bg-scoreboard;
+    font-family: 'Red_Rose';
     border: 1px solid #517671;
+    font-size: 24px;
     color: $color-white;
+    border-radius: 0;
   }
 
   .current-player-badge {
     background-color: transparent;
+  }
+
+  &.exit-dialog {
+    border-radius: 0;
+  }
+
+  .confirm-exit-btn,
+  .cancel-btn {
+    font-family: 'Red_Rose';
+    border-radius: 0;
   }
 }
 
@@ -243,17 +274,6 @@
 
   &.gamesField {
     background-color: $color-white;
-  }
-
-  .score-badge__player-1-group,
-  .score-badge__player-2-group {
-    &.is-blue {
-      color: $player-blue;
-    }
-
-    &.is-orange {
-      color: $player-orange;
-    }
   }
 
   .scoreboard {
@@ -282,7 +302,6 @@
     height: 46px;
     background-color: $games-screen-bg-food-scoreboard-exit;
     color: $player-orange;
-    border-radius: 10px;
     border: 1px solid $btn-exit-food-bg;
     font-family: 'Delius';
     text-transform: uppercase;
@@ -328,12 +347,83 @@
 
 // games
 [data-theme='games'] {
+
+  &.gamesField {
+    background-color: $games-screen-bg-games;
+  }
+
   .scoreboard {
     background-color: $games-screen-bg-scoreboard;
+    font-family: 'Orbitron';
+
+    &__scores {
+      background-color: white;
+    }
+  }
+
+  .scoreboard__current {
+    font-family: 'Orbitron';
+  }
+
+
+  .score-badge__icon {
+    width: 22px;
+    height: 28px;
+  }
+
+  .curennt-player-word {
+    color: white;
+    font-size: 32px;
+  }
+
+  .current-player-badge {
+    width: 41px;
+    height: 40px;
+  }
+
+  .current-player-badge img {
+    width: 25px;
+    height: 32px;
   }
 
   .exit-btn {
+    height: 54px;
+    border: 3px solid $btn-back-games-bg;
     background-color: $games-screen-bg-scoreboard-exit;
+    color: white;
+    font-family: 'Orbitron';
+  }
+
+
+  &.exit-dialog {
+    width: 481px;
+    height: 254px;
+  }
+
+  .exit-dialog__text {
+    color: $btn-games-bg;
+    font-family: 'Orbitron';
+    font-size: 28px;
+    margin-top: 15px;
+    margin-bottom: 2.5rem;
+  }
+
+  .cancel-btn,
+  .confirm-exit-btn {
+    font-family: 'Orbitron';
+    font-size: 16px;
+  }
+
+  .cancel-btn {
+    width: 201px;
+    background-color: $btn-back-games-bg;
+
+  }
+
+  .confirm-exit-btn {
+    width: 176px;
+    color: $btn-back-games-bg;
+    border: 3px solid $btn-back-games-bg;
   }
 }
 

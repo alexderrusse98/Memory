@@ -165,13 +165,21 @@ function getWinner() {
     const player2 = gameState.settings.players[1];
     const winPlayer = document.getElementById('winner-name');
 
+    setHomeButtonText('winner-home-btn');
+    setHomeButtonText('draw-home-btn');
+
     if (player1.score > player2.score) {
         const playerName = player1.color === 'blue' ? 'Blue Player' : 'Orange Player';
         if (winPlayer) {
             winPlayer.textContent = playerName;
         }
         setPlayerColorClass('winner-name', player1.color);
-        setIconSrc('winner-icon', `/src/assets/icons/players/player-${player1.color}.svg`);
+
+        const winnerIconPath = gameState.settings.theme === 'games'
+            ? '/src/assets/icons/players/pokal.svg'
+            : `/src/assets/icons/players/player-${player1.color}.svg`;
+        setIconSrc('winner-icon', winnerIconPath);
+
         showScreen('winner-screen');
     } else if (player2.score > player1.score) {
         const playerName = player2.color === 'blue' ? 'Blue Player' : 'Orange Player';
@@ -179,7 +187,12 @@ function getWinner() {
             winPlayer.textContent = playerName;
         }
         setPlayerColorClass('winner-name', player2.color);
-        setIconSrc('winner-icon', `/src/assets/icons/players/player-${player2.color}.svg`);
+
+        const winnerIconPath = gameState.settings.theme === 'games'
+            ? '/src/assets/icons/players/pokal.svg'
+            : `/src/assets/icons/players/player-${player2.color}.svg`;
+        setIconSrc('winner-icon', winnerIconPath);
+
         showScreen('winner-screen');
     } else {
         const scalePath = `/src/assets/icons/scales/scale-${gameState.settings.theme}.svg`;

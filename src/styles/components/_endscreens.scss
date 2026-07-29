@@ -1,6 +1,15 @@
 @use '../variables' as *;
 @use '../functions' as *;
 
+.score-badge {
+    &.is-blue {
+        color: $player-blue;
+    }
+
+    &.is-orange {
+        color: $player-orange;
+    }
+}
 
 #winner-name {
     &.is-blue {
@@ -16,16 +25,6 @@
     display: none;
 }
 
-.score-badge {
-    &.is-blue {
-        color: $player-blue;
-    }
-
-    &.is-orange {
-        color: $player-orange;
-    }
-}
-
 .gameover-screen,
 .winner-screen,
 .draw-screen {
@@ -38,7 +37,6 @@
 
 .winner-screen {
     flex-direction: column;
-    justify-content: flex-start;
 
     &confetti {
         width: 1233px;
@@ -131,11 +129,6 @@
     }
 
 
-    .score-badge {
-        font-size: 24px;
-        text-transform: capitalize;
-    }
-
     &.gameover-screen {
         h1 {
             display: none;
@@ -180,11 +173,66 @@
 
 [data-theme='games'] {
 
-    &.gamesField,
     &.gameover-screen,
     &.winner-screen,
+    &.draw-screen,
     &.draw-screen {
-        background-color: $games-screen-bg-scoreboard;
+        background-color: $games-screen-bg-games;
+    }
+
+
+    .gameover-screen__content {
+        h1 {
+            color: $btn-back-games-bg;
+            font-size: 124px;
+            font-family: 'Orbitron';
+            margin-bottom: 50px;
+        }
+
+        p {
+            color: white;
+            font-size: 28px;
+            font-family: 'Orbitron';
+        }
+    }
+
+    .gameover-screen__scores {
+        background-color: white;
+        border-radius: 10px;
+        width: 222px;
+        font-size: 40px;
+        font-family: 'Orbitron';
+    }
+
+    .confetti {
+        display: none;
+    }
+
+    .winner-screen__content {
+        h1 {
+            font-family: 'Orbitron';
+            font-size: 64px;
+            margin-bottom: 32px;
+        }
+    }
+
+    .winner-screen__label {
+        font-family: 'Orbitron';
+        font-size: 28px;
+    }
+
+    .winner-icon-wrapper {
+        img {
+            width: 288px;
+            height: 344px;
+        }
+    }
+
+    .home-btn {
+        border: 3px solid $btn-back-games-bg;
+        color: white;
+        font-family: 'Orbitron';
+        font-size: 20px;
     }
 }
 
@@ -195,6 +243,10 @@
     &.winner-screen,
     &.draw-screen {
         background-color: $theme-da-projects-bg;
+    }
+
+    .confetti {
+        display: none;
     }
 }
 
@@ -251,14 +303,6 @@
         }
     }
 
-    .score-badge {
-        font-size: 40px;
-        gap: 0.2rem;
-
-        img {
-            height: 30px;
-        }
-    }
 
     // winner screen 
     &.winner-screen {
