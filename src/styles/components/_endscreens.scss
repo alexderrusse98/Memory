@@ -207,6 +207,18 @@
         background-color: #f3832d
     }
 
+    &.winner-screen,
+    &.draw-screen {
+        .home-btn {
+            color: white;
+            background-color: #f3832d;
+            font-family: 'Delius';
+            font-size: 16px;
+            height: 45px;
+            width: 97px;
+        }
+    }
+
     .gameover-screen__content {
         gap: 2rem;
 
@@ -242,8 +254,70 @@
     .score-badge {
         font-size: 40px;
         gap: 0.2rem;
+
         img {
             height: 30px;
         }
+    }
+
+    // winner screen 
+    &.winner-screen {
+        justify-content: center;
+    }
+
+    .winner-screen__content h1 {
+        margin-top: -2rem;
+    }
+
+    .confetti {
+        display: none;
+    }
+
+    .winner-screen__label {
+        font-family: 'Klee_One';
+        font-size: 40px;
+        color: #a45212;
+    }
+
+    #winner-name {
+        font-family: 'Klee_One';
+        font-weight: 600;
+        font-size: 60px;
+
+        &.is-blue,
+        &.is-orange {
+            color: #a45212;
+        }
+    }
+
+    .winner-icon-wrapper {
+        margin-top: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        height: 300px;
+        border-radius: 12px;
+        background-color: #f7e6d5;
+    }
+
+    // draw screen
+    .draw-screen__label {
+        font-family: 'Klee_One';
+        color: #f3832d;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .draw-screen__title-text {
+        font-family: 'Klee_One';
+        color: #f3832d;
+        font-size: 128px;
+        font-weight: 600;
+    }
+
+    .draw-screen__scale-icon {
+        height: 285px;
+        width: 312px;
     }
 }

@@ -141,9 +141,9 @@ function getGameover() {
     setPlayerColorClass('gameover-score-player-1', gameState.settings.players[0].color);
     setPlayerColorClass('gameover-score-player-2', gameState.settings.players[1].color);
 
-   // setTimeout(() => {
-  //      getWinner();
-  //  }, 2000);
+    setTimeout(() => {
+        getWinner();
+    }, 2000);
 }
 
 function setColorLabel(elementId: string, color: string) {
@@ -165,19 +165,18 @@ function getWinner() {
     const player2 = gameState.settings.players[1];
     const winPlayer = document.getElementById('winner-name');
 
-    setHomeButtonText('winner-home-btn');
-    setHomeButtonText('draw-home-btn');
-
     if (player1.score > player2.score) {
+        const playerName = player1.color === 'blue' ? 'Blue Player' : 'Orange Player';
         if (winPlayer) {
-            winPlayer.textContent = player1.name;
+            winPlayer.textContent = playerName;
         }
         setPlayerColorClass('winner-name', player1.color);
         setIconSrc('winner-icon', `/src/assets/icons/players/player-${player1.color}.svg`);
         showScreen('winner-screen');
     } else if (player2.score > player1.score) {
+        const playerName = player2.color === 'blue' ? 'Blue Player' : 'Orange Player';
         if (winPlayer) {
-            winPlayer.textContent = player2.name;
+            winPlayer.textContent = playerName;
         }
         setPlayerColorClass('winner-name', player2.color);
         setIconSrc('winner-icon', `/src/assets/icons/players/player-${player2.color}.svg`);
