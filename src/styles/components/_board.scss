@@ -16,20 +16,22 @@
 }
 
 .board {
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  max-width: 600px;
+  grid-template-columns: repeat(4, 120px);
+  justify-content: center;
+  gap: 2rem;
   margin: 0 auto;
 
   &--24,
   &--36 {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 120px);
   }
 }
 
 .card {
-  aspect-ratio: 1;
+  width: 120px;
+  height: 100px;
   cursor: pointer;
   perspective: 800px;
 }
@@ -429,11 +431,64 @@
 
 // da-projects
 [data-theme='da-projects'] {
+  &.gamesField {
+    background-color: #ffffff;
+  }
+
   .scoreboard {
     background-color: $games-screen-bg-da-projects-scoreboard;
+
+    .scoreboard__scores {
+      background-color: white;
+      font-family: 'Figtree';
+    }
+  }
+
+  .curennt-player-word {
+    font-size: 32px;
+    color: $btn-exit-da-projects-bg;
+    font-family: 'Figtree';
   }
 
   .exit-btn {
     background-color: $games-screen-bg-da-projects-scoreboard-exit;
+    color: $btn-exit-da-projects-bg;
+    font-size: 20px;
+
+  }
+
+  .exit-btn-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  &.exit-dialog {
+    height: 253px;
+    width: 456px;
+  }
+
+  .exit-dialog__text {
+    font-family: 'Figtree';
+    color: #294f60;
+    font-size: 28px;
+    margin-top: 15px;
+    margin-bottom: 2.5rem;
+  }
+
+  .confirm-exit-btn,
+  .cancel-btn {
+    font-family: 'Figtree';
+    font-size: 16px;
+  }
+
+  .confirm-exit-btn {
+    background-color: $btn-back-da-projects-bg;
+    color: white;
+    border: none;
+  }
+
+  .cancel-btn {
+    background-color: $theme-da-projects-bg;
+    color: $btn-exit-da-projects-bg;
   }
 }

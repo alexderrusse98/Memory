@@ -1,6 +1,6 @@
 import { gameSettings, gameState } from './state';
 import { themeIcons } from './themeIcon';
-import { CardData } from './types';
+import { CardData, Player } from './types';
 import { showScreen } from './router';
 
 const board = document.getElementById('board');
@@ -160,6 +160,17 @@ function setHomeButtonText(elementId: string) {
     }
 }
 
+function getWinnerIconPath(player: Player): string {
+    const theme = gameState.settings.theme;
+    if (theme === 'games') {
+        return '/src/assets/icons/players/pokal.svg';
+    }
+    if (theme === 'da-projects') {
+        return `/src/assets/icons/players/player-${player.color}-white.svg`;
+    }
+    return `/src/assets/icons/players/player-${player.color}.svg`;
+}
+
 function getWinner() {
     const player1 = gameState.settings.players[0];
     const player2 = gameState.settings.players[1];
@@ -175,10 +186,7 @@ function getWinner() {
         }
         setPlayerColorClass('winner-name', player1.color);
 
-        const winnerIconPath = gameState.settings.theme === 'games'
-            ? '/src/assets/icons/players/pokal.svg'
-            : `/src/assets/icons/players/player-${player1.color}.svg`;
-        setIconSrc('winner-icon', winnerIconPath);
+        setIconSrc('winner-icon', getWinnerIconPath(player1));
 
         showScreen('winner-screen');
     } else if (player2.score > player1.score) {
@@ -187,11 +195,7 @@ function getWinner() {
             winPlayer.textContent = playerName;
         }
         setPlayerColorClass('winner-name', player2.color);
-
-        const winnerIconPath = gameState.settings.theme === 'games'
-            ? '/src/assets/icons/players/pokal.svg'
-            : `/src/assets/icons/players/player-${player2.color}.svg`;
-        setIconSrc('winner-icon', winnerIconPath);
+        setIconSrc('winner-icon', getWinnerIconPath(player2));
 
         showScreen('winner-screen');
     } else {

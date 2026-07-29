@@ -238,15 +238,69 @@
 
 [data-theme='da-projects'] {
 
-    &.gamesField,
     &.gameover-screen,
     &.winner-screen,
     &.draw-screen {
-        background-color: $theme-da-projects-bg;
+        background-color: $btn-exit-da-projects-bg;
+    }
+
+    .gameover-screen__content {
+
+        h1 {
+            color: #FD5B4f;
+            font-family: 'Figtree';
+            font-size: 130px;
+        }
+
+        p {
+            color: white;
+            font-family: 'Figtree';
+            font-weight: 500;
+            font-size: 40px;
+        }
+    }
+
+    .gameover-screen__scores {
+        background-color: white;
+        border-radius: 10px;
+        width: auto;
+        padding: 0 10px;
+    }
+
+    .score-badge {
+        font-family: 'Figtree';
+        font-size: 38px;
     }
 
     .confetti {
         display: none;
+    }
+
+    .winner-screen__label {
+        font-family: 'Figtree';
+        font-size: 40px;
+        margin-bottom: -40px;
+    }
+
+
+    #winner-name {
+        font-family: 'Figtree';
+        font-weight: 700;
+        font-size: 80px;
+        margin-bottom: 28px;
+
+        &.is-blue,
+        &.is-orange {
+            color: white
+        }
+    }
+
+    .home-btn {
+        background-color: $theme-da-projects-bg;
+        color: $btn-exit-da-projects-bg ;
+        font-family: 'Figtree';
+        font-size: 20px;
+
     }
 }
 
