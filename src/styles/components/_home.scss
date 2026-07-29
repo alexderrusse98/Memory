@@ -65,10 +65,13 @@
   width: rem(44);
   height: rem(32);
   fill: $color-black;
+  transition: transform 0.3s ease;
 }
 
 .btn__arrow {
   width: rem(33);
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 .btn--play {
@@ -86,5 +89,15 @@
 
   &:hover {
     background-color: color.adjust($btn-play-bg, $lightness: -20%);
+
+    .btn__icon {
+      transform: rotate(-14deg);
+      transition: transform 0.3s ease;
+    }
+
+    .btn__arrow {
+      transform: scale(1.5);
+    }
   }
+
 }

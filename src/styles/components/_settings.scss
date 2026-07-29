@@ -200,7 +200,7 @@
     position: absolute;
     right: 0;
     top: 50%;
-    transform: translateY(-50%) rotate(20deg); // mittig + schräg
+    transform: translateY(-50%) rotate(20deg);
     width: 8px;
     height: 56px;
     background-color: #f0e96e;
@@ -213,5 +213,14 @@
 
   &__summary-item:last-of-type {
     padding-right: 0;
+  }
+}
+
+.settings__option {
+  &:hover {
+    .settings__label {
+      font-size: rem(22); 
+      font-weight: $font-weight-bold;
+    }
   }
 }
