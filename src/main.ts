@@ -10,18 +10,24 @@ const themeRadios = document.querySelectorAll('input[name="theme"]');
 // Alle Vorschaubilder greifen
 const previewImages = document.querySelectorAll('.settings__preview-img');
 
-themeRadios.forEach((radio) => {
-    radio.addEventListener('change', () => {
-        previewImages.forEach((img) => {
-            img.setAttribute('hidden', '');
-        });
+const themeLabels = document.querySelectorAll('.settings__option:has(input[name="theme"])');
 
-        const selectedTheme = (radio as HTMLInputElement).value;
-        const activeImg = document.querySelector(`.settings__preview-img[data-theme="${selectedTheme}"]`);
+themeLabels.forEach((label) => {
+    const radio = label.querySelector('input[type="radio"]') as HTMLInputElement;
+
+    label.addEventListener('mouseenter', () => {
+        previewImages.forEach((img) => img.setAttribute('hidden', ''));
+        const hoverImg = document.querySelector(`.settings__preview-img[data-theme="${radio.value}"]`);
+        hoverImg?.removeAttribute('hidden');
+    });
+
+    label.addEventListener('mouseleave', () => {
+        previewImages.forEach((img) => img.setAttribute('hidden', ''));
+        const checkedRadio = document.querySelector('input[name="theme"]:checked') as HTMLInputElement;
+        const activeImg = document.querySelector(`.settings__preview-img[data-theme="${checkedRadio.value}"]`);
         activeImg?.removeAttribute('hidden');
     });
 });
-
 
 // home play btn
 const playBtn = document.getElementById('play-btn');
