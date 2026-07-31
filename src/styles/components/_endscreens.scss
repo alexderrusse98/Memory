@@ -164,8 +164,12 @@
         font-family: 'Red_Rose';
         font-size: 24px;
         background-color: $games-code-screen-bg-scoreboard;
-        border: 1px solid #517671;
+        border: 3px solid #59ccb8;
         color: $color-white;
+
+        &:hover {
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+        }
     }
 
 }
@@ -300,6 +304,10 @@
         color: $btn-exit-da-projects-bg ;
         font-family: 'Figtree';
         font-size: 20px;
+
+        &:hover {
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+        }
 
     }
 }

@@ -49,6 +49,11 @@ startGameBtn?.addEventListener('click', () => {
     gameScreen?.setAttribute('data-theme', theme);
     const exitIconPath = `/src/assets/icons/setting_icons/exit-icon-${theme}.svg`;
     setIconSrc('exit-btn-icon', exitIconPath);
+
+    const exitIconHoverPath = theme === 'games'
+        ? '/src/assets/icons/setting_icons/exit-icon-games-hover.svg'
+        : '/src/assets/icons/setting_icons/exit-icon-code-vibes.svg';  // weiß für da-projects/food
+    setIconSrc('exit-btn-icon-hover', exitIconHoverPath);
     gameSettings.boardSize = board;
     if (player === 'blue') {
         gameSettings.players[0].color = 'blue';

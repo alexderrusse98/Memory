@@ -151,6 +151,7 @@
 .exit-btn-icon {
   width: 24.75px;
   height: 22.5px;
+  transition: opacity 0.2s ease;
 }
 
 .exit-dialog {
@@ -199,7 +200,26 @@
   margin-bottom: 20px;
 }
 
+.exit-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
+.exit-btn-icon--hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.exit-btn:hover .exit-btn-icon--hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.exit-btn:hover .exit-btn-icon:not(.exit-btn-icon--hover) {
+  opacity: 0;
+}
 
 
 // Code Vibes
@@ -245,10 +265,22 @@
   .exit-btn {
     background-color: $games-code-screen-bg-scoreboard;
     font-family: 'Red_Rose';
-    border: 1px solid #517671;
+    border: 3px solid #59ccb8;
     font-size: 24px;
     color: $color-white;
     border-radius: 0;
+
+    &:hover {
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+
+      .exit-btn-icon {
+        opacity: 1;
+      }
+    }
+
+    .exit-btn-icon--hover {
+      display: none;
+    }
   }
 
   .current-player-badge {
@@ -257,12 +289,23 @@
 
   &.exit-dialog {
     border-radius: 0;
+
   }
 
   .confirm-exit-btn,
   .cancel-btn {
     font-family: 'Red_Rose';
     border-radius: 0;
+  }
+
+  .cancel-btn:hover {
+    background-color: #82e9d8;
+    border: 3px solid $btn-back-code-bg;
+  }
+
+  .confirm-exit-btn:hover {
+    background-color: #effcfa;
+    box-shadow: 0 0 12px rgba(130, 233, 216, 0.6);
   }
 }
 
