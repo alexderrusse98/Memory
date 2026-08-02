@@ -29,6 +29,20 @@ themeLabels.forEach((label) => {
     });
 });
 
+const settingsMain = document.querySelector('.settings__main');
+console.log('settingsMain:', settingsMain);
+settingsMain?.addEventListener('change', (event) => {
+    const target = event.target as HTMLInputElement;
+    const settingName = target.name;
+    const settingValue = target.value;
+    const labelText = target.closest('.settings__option')?.querySelector('.settings__label')?.textContent;
+    const summarySpan = document.getElementById(`summary-${settingName}`);
+    if (summarySpan && labelText) {
+        summarySpan.textContent = labelText;
+    }
+})
+
+
 // home play btn
 const playBtn = document.getElementById('play-btn');
 
@@ -52,7 +66,7 @@ startGameBtn?.addEventListener('click', () => {
 
     const exitIconHoverPath = theme === 'games'
         ? '/src/assets/icons/setting_icons/exit-icon-games-hover.svg'
-        : '/src/assets/icons/setting_icons/exit-icon-code-vibes.svg';  // weiß für da-projects/food
+        : '/src/assets/icons/setting_icons/exit-icon-code-vibes.svg';
     setIconSrc('exit-btn-icon-hover', exitIconHoverPath);
     gameSettings.boardSize = board;
     if (player === 'blue') {
