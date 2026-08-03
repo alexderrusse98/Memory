@@ -8,21 +8,23 @@ import { BoardSize, Theme } from './ts/types';
 const previewImages = document.querySelectorAll('.settings__preview-img');
 const themeLabels = document.querySelectorAll('.settings__option:has(input[name="theme"])');
 
+function showPreview(theme: string) {
+    previewImages.forEach((img) => img.setAttribute('hidden', ''));
+    const img = document.querySelector(`.settings__preview-img[data-theme="${theme}"]`);
+    img?.removeAttribute('hidden');
+}
+
 themeLabels.forEach((label) => {
     const radio = label.querySelector('input[type="radio"]') as HTMLInputElement;
 
     label.addEventListener('mouseenter', () => {
-        previewImages.forEach((img) => img.setAttribute('hidden', ''));
-        const hoverImg = document.querySelector(`.settings__preview-img[data-theme="${radio.value}"]`);
-        hoverImg?.removeAttribute('hidden');
+        showPreview(radio.value);
     });
 
     label.addEventListener('mouseleave', () => {
-        previewImages.forEach((img) => img.setAttribute('hidden', ''));
         const checkedRadio = document.querySelector('input[name="theme"]:checked') as HTMLInputElement | null;
-        const themeToShow = checkedRadio?.value || 'code-vibes';
-        const activeImg = document.querySelector(`.settings__preview-img[data-theme="${themeToShow}"]`);
-        activeImg?.removeAttribute('hidden');
+        const themeToShow = checkedRadio?.value ?? 'code-vibes';
+        showPreview(themeToShow);
     });
 });
 
@@ -103,7 +105,7 @@ const confirmExitBtn = document.getElementById('confirm-exit-btn');
 confirmExitBtn?.addEventListener('click', () => {
     closeExitDialog();
     exitGame();
-    resetSettings()
+    resetSettings();
     showScreen('settings-screen');
 });
 
@@ -121,12 +123,14 @@ function goHome() {
 
 function resetSettings() {
     startBtn.disabled = true;
-    const themeDefault = document.querySelector('input[name="theme"][value="code-vibes"]') as HTMLInputElement;
-    themeDefault.checked = true;
-    const radiosToReset = document.querySelectorAll<HTMLInputElement>('input[name="player"], input[name="board"]');
+
+    const radiosToReset = document.querySelectorAll<HTMLInputElement>(
+        'input[name="theme"], input[name="player"], input[name="board"]'
+    );
     radiosToReset.forEach((radio) => {
         radio.checked = false;
     });
+    showPreview('code-vibes');
     const defaults = {
         'summary-theme': 'Game theme',
         'summary-player': 'Player',
