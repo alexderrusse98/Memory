@@ -19,8 +19,9 @@ themeLabels.forEach((label) => {
 
     label.addEventListener('mouseleave', () => {
         previewImages.forEach((img) => img.setAttribute('hidden', ''));
-        const checkedRadio = document.querySelector('input[name="theme"]:checked') as HTMLInputElement;
-        const activeImg = document.querySelector(`.settings__preview-img[data-theme="${checkedRadio.value}"]`);
+        const checkedRadio = document.querySelector('input[name="theme"]:checked') as HTMLInputElement | null;
+        const themeToShow = checkedRadio?.value || 'code-vibes';
+        const activeImg = document.querySelector(`.settings__preview-img[data-theme="${themeToShow}"]`);
         activeImg?.removeAttribute('hidden');
     });
 });
@@ -127,7 +128,7 @@ function resetSettings() {
         radio.checked = false;
     });
     const defaults = {
-        'summary-theme': 'Code vibes theme',
+        'summary-theme': 'Game theme',
         'summary-player': 'Player',
         'summary-board': 'Board size',
     };
