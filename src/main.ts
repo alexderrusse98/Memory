@@ -4,12 +4,8 @@ import { showScreen } from './ts/router';
 import { gameSettings, gameState } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
 
-
-// Alle Theme-Radios greifen
-const themeRadios = document.querySelectorAll('input[name="theme"]');
 // Alle Vorschaubilder greifen
 const previewImages = document.querySelectorAll('.settings__preview-img');
-
 const themeLabels = document.querySelectorAll('.settings__option:has(input[name="theme"])');
 
 themeLabels.forEach((label) => {
@@ -29,35 +25,39 @@ themeLabels.forEach((label) => {
     });
 });
 
+const startBtn = document.getElementById('start-btn') as HTMLButtonElement;
+
 const settingsMain = document.querySelector('.settings__main');
-console.log('settingsMain:', settingsMain);
 settingsMain?.addEventListener('change', (event) => {
     const target = event.target as HTMLInputElement;
     const settingName = target.name;
-    const settingValue = target.value;
     const labelText = target.closest('.settings__option')?.querySelector('.settings__label')?.textContent;
     const summarySpan = document.getElementById(`summary-${settingName}`);
     if (summarySpan && labelText) {
         summarySpan.textContent = labelText;
     }
-})
+    checkCheckedRadios();
+});
 
+function checkCheckedRadios() {
+    const themeChosen = document.querySelector('input[name="theme"]:checked');
+    const playerChosen = document.querySelector('input[name="player"]:checked');
+    const boardChosen = document.querySelector('input[name="board"]:checked');
+    startBtn.disabled = !(themeChosen && playerChosen && boardChosen);
+}
 
 // home play btn
 const playBtn = document.getElementById('play-btn');
-
 const gameScreen = document.getElementById('game-screen');
 
 playBtn?.addEventListener('click', () => {
     showScreen('settings-screen');
 });
 
-const startGameBtn = document.getElementById('start-btn');
-startGameBtn?.addEventListener('click', () => {
+startBtn?.addEventListener('click', () => {
     const theme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement).value as Theme;
     const player = (document.querySelector('input[name="player"]:checked') as HTMLInputElement).value;
     const board = (document.querySelector('input[name="board"]:checked') as HTMLInputElement).value as BoardSize;
-
 
     gameSettings.theme = theme;
     gameScreen?.setAttribute('data-theme', theme);
@@ -79,11 +79,9 @@ startGameBtn?.addEventListener('click', () => {
     const cards = createCards();
     renderBoard(cards);
     showScreen('game-screen');
-
 });
 
-// Boad Dialog
-
+// Board Dialog
 const exitDialog = document.getElementById('exit-confirm-dialog') as HTMLDialogElement;
 
 const exitBtn = document.getElementById('exit-game-btn');
@@ -104,6 +102,7 @@ const confirmExitBtn = document.getElementById('confirm-exit-btn');
 confirmExitBtn?.addEventListener('click', () => {
     closeExitDialog();
     exitGame();
+    resetSettings()
     showScreen('settings-screen');
 });
 
@@ -115,7 +114,28 @@ exitDialog?.addEventListener('click', (event) => {
 
 function goHome() {
     exitGame();
+    resetSettings();
     showScreen('home-screen');
+}
+
+function resetSettings() {
+    startBtn.disabled = true;
+    const themeDefault = document.querySelector('input[name="theme"][value="code-vibes"]') as HTMLInputElement;
+    themeDefault.checked = true;
+    const radiosToReset = document.querySelectorAll<HTMLInputElement>('input[name="player"], input[name="board"]');
+    radiosToReset.forEach((radio) => {
+        radio.checked = false;
+    });
+    const defaults = {
+        'summary-theme': 'Code vibes theme',
+        'summary-player': 'Player',
+        'summary-board': 'Board size',
+    };
+
+    Object.entries(defaults).forEach(([id, text]) => {
+        const span = document.getElementById(id);
+        if (span) span.textContent = text;
+    });
 }
 
 const homeBtn = document.getElementById('winner-home-btn');
@@ -123,4 +143,3 @@ const drawHomeBtn = document.getElementById('draw-home-btn');
 
 homeBtn?.addEventListener('click', goHome);
 drawHomeBtn?.addEventListener('click', goHome);
-
