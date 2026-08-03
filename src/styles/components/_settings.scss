@@ -159,7 +159,7 @@
   }
 
   &__summary {
-    width: 550px;
+    width: fit-content;
     height: 81px;
     background-color: $btn-play-bg-btn;
     display: flex;
@@ -169,9 +169,17 @@
     border-radius: 8px;
     margin-top: 1rem;
     font-size: rem(20);
+    transform-origin: right center;
+    transition: transform 0.2s ease;
+  }
+
+  .settings__summary:has(.settings__start:hover:not(:disabled)) {
+    transform: scaleX(1.05);
   }
 
   &__start {
+    width: 126px;
+    height: 53px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -179,15 +187,15 @@
     padding: 0.5rem 1rem;
     font-size: rem(20);
     font-weight: $font-weight-semibold;
-    transition: padding 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    transform-origin: right center;
 
     img {
       transition: transform 0.3s ease;
     }
 
     &:hover:not(:disabled) {
-      background-color: color.adjust($btn-play-bg, $lightness: -20%);
-      padding: 0.9rem 1.4rem;
+      transform: scale(1.05);
 
       img {
         transform: rotate(-14deg);

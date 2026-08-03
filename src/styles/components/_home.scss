@@ -69,9 +69,13 @@
 }
 
 .btn__arrow {
-  width: rem(33);
-  display: inline-block;
+  width: rem(35);
+  fill: $color-black;
   transition: transform 0.3s ease;
+}
+
+.btn--play:hover .btn__arrow {
+  transform: scale(1.4) scaleY(1.7);
 }
 
 .btn--play {
@@ -94,10 +98,5 @@
       transform: rotate(-14deg);
       transition: transform 0.3s ease;
     }
-
-    .btn__arrow {
-      transform: scale(1.5);
-    }
   }
-
 }
