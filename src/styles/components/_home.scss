@@ -6,22 +6,19 @@
   min-height: 100vh;
   background-color: #2f3130;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 
   &__content {
-
     color: white;
     width: 100%;
     max-width: 1440px;
     position: relative;
     overflow: hidden;
-    min-height: 1008px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 5rem;
   }
 
   &__deco {
@@ -97,6 +94,55 @@
     .btn__icon {
       transform: rotate(-14deg);
       transition: transform 0.3s ease;
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .home {
+    &__content {
+      padding-left: 3rem;
+    }
+
+    &__title {
+      font-size: rem(80);
+    }
+
+    &__eyebrow {
+      font-size: rem(32);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    &__content {
+      padding-left: 2rem;
+    }
+
+    &__title {
+      font-size: rem(60);
+    }
+
+    &__eyebrow {
+      font-size: rem(24);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    &__content {
+      padding-left: 1rem;
+    }
+
+    &__title {
+      font-size: rem(40);
+    }
+
+    &__eyebrow {
+      font-size: rem(16);
     }
   }
 }
