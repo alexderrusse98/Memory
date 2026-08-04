@@ -23,7 +23,8 @@
             </svg>
             Play
             <svg class="btn__arrow" viewBox="0 0 35 15" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 1 6.36397 C 0.447715 6.36397 0 6.81168 0 7.36397 C 0 7.91625 0.447715 8.36397 1 8.36397 V 7.36397 V 6.36397 Z M 34.7071 8.07107 C 35.0976 7.68055 35.0976 7.04739 34.7071 6.65686 L 28.3431 0.2929 C 27.9526 -0.0976243 27.3195 -0.0976243 26.9289 0.2929 C 26.5384 0.683424 26.5384 1.31659 26.9289 1.70711 L 32.5858 7.36397 L 26.9289 13.0208 C 26.5384 13.4113 26.5384 14.0445 26.9289 14.435 C 27.3195 14.8256 27.9526 14.8256 28.3431 14.435 L 34.7071 8.07107 Z M 1 7.36397 V 8.36397 H 34 V 7.36397 V 6.36397 H 1 V 7.36397 Z" />
+              <path
+                d="M 1 6.36397 C 0.447715 6.36397 0 6.81168 0 7.36397 C 0 7.91625 0.447715 8.36397 1 8.36397 V 7.36397 V 6.36397 Z M 34.7071 8.07107 C 35.0976 7.68055 35.0976 7.04739 34.7071 6.65686 L 28.3431 0.2929 C 27.9526 -0.0976243 27.3195 -0.0976243 26.9289 0.2929 C 26.5384 0.683424 26.5384 1.31659 26.9289 1.70711 L 32.5858 7.36397 L 26.9289 13.0208 C 26.5384 13.4113 26.5384 14.0445 26.9289 14.435 C 27.3195 14.8256 27.9526 14.8256 28.3431 14.435 L 34.7071 8.07107 Z M 1 7.36397 V 8.36397 H 34 V 7.36397 V 6.36397 H 1 V 7.36397 Z" />
             </svg>
           </button>
         </div>
@@ -142,7 +143,7 @@
           <span class="score-badge" id="score-player-1">
             <img class="score-badge__icon" id="icon-player-1" src="" alt="" />
             <span class="score-badge__player-1-group" id="score-group-player-1">
-              <span id="score-color-player-1"></span>
+              <span class="score-color" id="score-color-player-1"></span>
               <span id="value-player-1">0</span>
             </span>
           </span>
@@ -150,7 +151,7 @@
           <span class="score-badge" id="score-player-2">
             <img class="score-badge__icon" id="icon-player-2" src="" alt="" />
             <span class="score-badge__player-2-group" id="score-group-player-2">
-              <span id="score-color-player-2"></span>
+              <span class="score-color" id="score-color-player-2"></span>
               <span id="value-player-2">0</span>
             </span>
           </span>
@@ -158,7 +159,7 @@
         </div>
 
         <div class="scoreboard__current">
-          <span class="curennt-player-word">Current player:</span>
+          <span class="current-player-word">Current player:</span>
 
           <span class="current-player-badge" id="current-player-badge">
             <img id="current-player-icon" src="" alt="" />
@@ -169,7 +170,8 @@
           <span class="exit-icon-wrapper">
             <img id="exit-btn-icon" class="exit-btn-icon" src="" alt="" />
             <img id="exit-btn-icon-hover" class="exit-btn-icon exit-btn-icon--hover" src="" alt="" />
-          </span> Exit game
+          </span>
+          <span class="exit-btn__text">Exit game</span>
         </button>
       </div>
 

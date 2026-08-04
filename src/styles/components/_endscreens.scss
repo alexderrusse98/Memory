@@ -271,11 +271,6 @@
         padding: 0 10px;
     }
 
-    .score-badge {
-        font-family: 'Figtree';
-        font-size: 38px;
-    }
-
     .confetti {
         display: none;
     }
@@ -425,5 +420,63 @@
     .draw-screen__scale-icon {
         height: 285px;
         width: 312px;
+    }
+}
+
+@media (max-width: 1024px) {
+    [data-theme] .gameover-screen__content {
+        .gameover-screen__title-img {
+            width: 500px;
+            height: 200px;
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    [data-theme] .gameover-screen__content {
+        .gameover-screen__title-img {
+            width: 400px;
+            height: 200px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    [data-theme] .gameover-screen__content {
+        h1 {
+            font-size: 100px;
+        }
+
+        .gameover-screen__title-img {
+            width: 300px;
+            height: 50px;
+        }
+    }
+
+    .gameover-screen__scores {
+        gap: 1rem;
+    }
+
+    [data-theme] .gameover-screen__scores {
+        width: auto;
+        padding: 0 10px;
+    }
+
+    [data-theme] #gameover-color-player-1,
+    [data-theme] #gameover-color-player-2 {
+        display: none;
+    }
+
+    [data-theme] .draw-screen__label {
+        font-size: 30px;
+    }
+
+    [data-theme] .draw-screen__content h1 {
+        font-size: 90px;
+    }
+
+    [data-theme] .draw-screen__scale-icon {
+        width: 250px;
+        height: 230px;
     }
 }

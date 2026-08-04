@@ -410,6 +410,18 @@
 
 @media (max-width: 480px) {
   .settings {
+    &__start {
+      transform-origin: center;
+
+      &:hover:not(:disabled) {
+        transform: scale(1.10);
+      }
+    }
+
+    .settings__summary:has(.settings__start:hover:not(:disabled)) {
+      transform: none;
+    }
+
     &__summary {
       flex-wrap: wrap;
       justify-content: center;
