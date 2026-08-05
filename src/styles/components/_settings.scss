@@ -2,8 +2,13 @@
 @use '../functions.scss' as *;
 @use 'sass:color';
 
+* {
+  box-sizing: border-box;
+}
+
+
 .settings {
-  min-height: 100vh;
+  min-height: auto;
   background-color: $color-white;
   display: flex;
   justify-content: center;
@@ -318,6 +323,35 @@
   width: 4px;
 }
 
+@media (max-height: 800px) {
+  .settings {
+
+    &__layout {
+      padding: 2rem;
+    }
+  }
+}
+
+@media (max-height: 720px) {
+  .settings {
+    &__group {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    &__title {
+      font-size: rem(36);
+    }
+
+    &__layout {
+      padding: 2rem;
+    }
+
+    &__right {
+      margin-top: 3rem;
+    }
+  }
+}
 
 @media (max-width: 1024px) {
   .settings {
@@ -371,6 +405,7 @@
     }
 
     &__start {
+      padding: 0.5rem 1.5rem;
       width: auto;
       height: auto;
       font-size: rem(16);
@@ -412,10 +447,15 @@
   .settings {
     &__start {
       transform-origin: center;
+      padding: 0.5rem 1rem;
 
       &:hover:not(:disabled) {
         transform: scale(1.10);
       }
+    }
+
+    .settings__group {
+      margin-top: 1rem;
     }
 
     .settings__summary:has(.settings__start:hover:not(:disabled)) {

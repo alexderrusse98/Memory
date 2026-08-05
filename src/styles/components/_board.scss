@@ -1,5 +1,52 @@
 @use '../variables' as *;
 
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+[data-theme='code-vibes'].exit-dialog[open] {
+  animation: slideFromTop 0.6s ease;
+}
+
+[data-theme='food'].exit-dialog[open],
+[data-theme='games'].exit-dialog[open] {
+  animation: slideFromBottom 0.6s ease;
+}
+
+[data-theme='da-projects'].exit-dialog[open] {
+  animation: fadeIn 0.8s ease;
+}
+
 .gamesField {
   min-height: 100vh;
 }
@@ -30,8 +77,8 @@
 }
 
 .card {
-  width: 120px;
-  height: 100px;
+  width: 100%;
+  aspect-ratio: 120 / 100;
   cursor: pointer;
   perspective: 800px;
 }
@@ -182,7 +229,7 @@
   width: 168px;
   height: 57px;
   color: $btn-back-code-bg;
-  border: 3px solid $btn-back-code-bg;
+  border: 2px solid $btn-back-code-bg;
 }
 
 .exit-dialog__text {
@@ -265,13 +312,15 @@
   .exit-btn {
     background-color: $games-code-screen-bg-scoreboard;
     font-family: 'Red_Rose';
-    border: 3px solid #59ccb8;
+    border: 1px solid #59ccb8;
     font-size: 24px;
     color: $color-white;
     border-radius: 0;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
 
     &:hover {
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
+      border: 3px solid #59ccb8;
 
       .exit-btn-icon {
         opacity: 1;
@@ -306,89 +355,10 @@
   .confirm-exit-btn:hover {
     background-color: #effcfa;
     box-shadow: 0 0 12px rgba(130, 233, 216, 0.6);
+    border: 3px solid $btn-back-code-bg;
   }
+
 }
-
-
-
-
-
-
-// food
-[data-theme='food'] {
-
-  &.gamesField {
-    background-color: $color-white;
-  }
-
-  .scoreboard {
-    background-color: $games-screen-bg-food-scoreboard;
-  }
-
-  .scoreboard__scores {
-    background-color: $color-white;
-    border-radius: 10px;
-    height: 54px;
-  }
-
-  .score-badge {
-    font-size: 30px;
-  }
-
-  .current-player-word {
-    font-size: 32px;
-    font-family: 'Klee_One';
-    font-weight: 400;
-    color: #a45212;
-  }
-
-  .exit-btn {
-    width: 173px;
-    height: 46px;
-    background-color: $games-screen-bg-food-scoreboard-exit;
-    color: $player-orange;
-    border: 1px solid $btn-exit-food-bg;
-    font-family: 'Delius';
-    text-transform: uppercase;
-    font-size: 16px;
-
-    &-icon {
-      width: 22px;
-      height: 22px;
-      color: $player-orange;
-    }
-  }
-
-  &.exit-dialog {
-    padding: 40px;
-    border-radius: 20px;
-    gap: 40px;
-  }
-
-  .exit-dialog__text {
-    color: #a45212;
-    font-size: 28px;
-    font-family: 'Klee_One';
-  }
-
-  .confirm-exit-btn,
-  .cancel-btn {
-    height: 45px;
-    background-color: #FFAB3E;
-    border: 1px solid #F3832D;
-    border-radius: 10px;
-    font-size: 16px;
-    font-family: 'Delius';
-    text-transform: uppercase;
-  }
-
-  .confirm-exit-btn {
-    background-color: #fff9f2;
-    color: #F3832D;
-  }
-}
-
-
 
 // games
 [data-theme='games'] {
@@ -433,12 +403,23 @@
 
   .exit-btn {
     height: 54px;
-    border: 3px solid $btn-back-games-bg;
+    border: 2px solid $btn-back-games-bg;
     background-color: $games-screen-bg-scoreboard-exit;
     color: white;
     font-family: 'Orbitron';
+
+    &:hover {
+      box-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+      border: 3px solid $btn-back-games-bg;
+      background-color: $games-screen-bg-scoreboard-exit;
+    }
   }
 
+  .exit-btn-icon--hover {
+    width: 24.75px;
+    height: 22.5px;
+    object-fit: cover;
+  }
 
   &.exit-dialog {
     width: 481px;
@@ -463,12 +444,22 @@
     width: 201px;
     background-color: $btn-back-games-bg;
 
+    &:hover {
+      color: $btn-back-games-bg;
+      background-color: white;
+      border: 3px solid $btn-back-games-bg;
+    }
   }
 
   .confirm-exit-btn {
     width: 176px;
     color: $btn-back-games-bg;
-    border: 3px solid $btn-back-games-bg;
+    border: 2px solid $btn-back-games-bg;
+
+    &:hover {
+      border: 3px solid $btn-back-games-bg;
+      background-color: #f0e4ee;
+    }
   }
 }
 
@@ -503,6 +494,11 @@
     color: $btn-exit-da-projects-bg;
     font-size: 20px;
 
+    &:hover {
+      transition: color 0.3s ease;
+      color: white;
+      background-color: #1d7595;
+    }
   }
 
   .exit-btn-icon {
@@ -527,17 +523,160 @@
   .cancel-btn {
     font-family: 'Figtree';
     font-size: 16px;
+    font-weight: 700;
   }
 
   .confirm-exit-btn {
-    background-color: $btn-back-da-projects-bg;
+    background-color: #fe8a81;
     color: white;
     border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: $btn-back-da-projects-bg;
+      box-shadow: none;
+    }
   }
 
   .cancel-btn {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease;
     background-color: $theme-da-projects-bg;
     color: $btn-exit-da-projects-bg;
+
+    &:hover {
+      color: white;
+      background-color: $btn-exit-da-projects-bg;
+      box-shadow: none;
+    }
+  }
+}
+
+// food
+[data-theme='food'] {
+
+  &.gamesField {
+    background-color: $color-white;
+  }
+
+  .scoreboard {
+    background-color: $games-screen-bg-food-scoreboard;
+  }
+
+  .scoreboard__scores {
+    background-color: $color-white;
+    border-radius: 10px;
+    height: 54px;
+  }
+
+  .score-badge {
+    font-size: 30px;
+  }
+
+  .current-player-word {
+    font-size: 32px;
+    font-family: 'Klee_One';
+    font-weight: 400;
+    color: #a45212;
+  }
+
+  .exit-btn {
+    width: 173px;
+    height: 46px;
+    background-color: $games-screen-bg-food-scoreboard-exit;
+    color: $player-orange;
+    border: 1px solid $btn-exit-food-bg;
+    font-family: 'Delius';
+    text-transform: uppercase;
+    font-size: 16px;
+
+    &-icon {
+      width: 22px;
+      height: 22px;
+      color: $player-orange;
+    }
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      background-color: $btn-exit-food-bg;
+      transition: color 0.3s ease;
+      color: white;
+    }
+  }
+
+  .exit-btn-icon--hover {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  &.exit-dialog {
+    padding: 40px;
+    border-radius: 20px;
+    gap: 40px;
+  }
+
+  .exit-dialog__text {
+    color: #a45212;
+    font-size: 28px;
+    font-family: 'Klee_One';
+  }
+
+  .confirm-exit-btn,
+  .cancel-btn {
+    height: 45px;
+    background-color: #FFAB3E;
+    border: 1px solid #F3832D;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Delius';
+    text-transform: uppercase;
+  }
+
+  .confirm-exit-btn {
+    background-color: #fff9f2;
+    color: #F3832D;
+    width: 116px;
+
+    &:hover {
+      background-color: #F3832D;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .cancel-btn {
+    &:hover {
+      background-color: #F3832D;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+// media queries
+@media (max-height: 720px) {
+  .board {
+    gap: 1.5rem;
+  }
+
+  .scoreboard {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-height: 600px) {
+  .board--36 {
+    max-width: 380px;
+    gap: 0.4rem;
+  }
+
+  .board--36 .card {
+    aspect-ratio: 1 / 1;
+  }
+
+  .scoreboard {
+    margin-bottom: 1rem;
   }
 }
 
@@ -552,12 +691,6 @@
     &--36 {
       grid-template-columns: repeat(6, 1fr);
     }
-  }
-
-  .card {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 120 / 100;
   }
 }
 
@@ -579,14 +712,6 @@
       grid-template-columns: repeat(6, 1fr);
     }
   }
-
-
-  .card {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 120 / 100;
-  }
-
 
   [data-theme] {
     .score-badge {
@@ -622,10 +747,6 @@
     }
   }
 
-  .card {
-    aspect-ratio: 1 / 1;
-  }
-
   [data-theme] {
     .current-player-word {
       font-size: 25px;
@@ -656,10 +777,6 @@
 @media (max-width: 480px) {
   .board {
     gap: 0.5rem;
-  }
-
-  .card {
-    aspect-ratio: 1 / 1;
   }
 
   [data-theme] .current-player-word {
