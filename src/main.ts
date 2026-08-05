@@ -77,13 +77,13 @@ function setPlayerColors(player: string): void {
  * @param theme - The currently selected theme
  */
 function setExitIcons(theme: Theme): void {
-    const exitIconPath = `/src/assets/icons/setting_icons/exit-icon-${theme}.svg`;
+    const exitIconPath = `/assets/icons/setting_icons/exit-icon-${theme}.svg`;
     setIconSrc('exit-btn-icon', exitIconPath);
 
     // Only 'games' has its own hover icon, otherwise fall back to code-vibes
     const exitIconHoverPath = theme === 'games'
-        ? '/src/assets/icons/setting_icons/exit-icon-games-hover.svg'
-        : '/src/assets/icons/setting_icons/exit-icon-code-vibes.svg';
+        ? '/assets/icons/setting_icons/exit-icon-games-hover.svg'
+        : '/assets/icons/setting_icons/exit-icon-code-vibes.svg';
     setIconSrc('exit-btn-icon-hover', exitIconHoverPath);
 }
 
