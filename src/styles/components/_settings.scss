@@ -12,7 +12,7 @@
   background-color: $color-white;
   display: flex;
   justify-content: center;
-
+  
   &__layout {
     display: flex;
     width: 100%;
@@ -26,7 +26,6 @@
     flex: 1;
   }
 
-  // Title styles
   &__title {
     font-size: rem(54);
     font-weight: $font-weight-bold;

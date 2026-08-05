@@ -34,6 +34,12 @@
   }
 }
 
+#gameover-screen:not([hidden]),
+#winner-screen:not([hidden]),
+#draw-screen:not([hidden]) {
+  animation: slideFromTop 0.8s ease;
+}
+
 [data-theme='code-vibes'].exit-dialog[open] {
   animation: slideFromTop 0.6s ease;
 }
