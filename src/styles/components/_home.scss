@@ -3,10 +3,11 @@
 @use 'sass:color';
 
 .home {
+  position: relative;
   min-height: 100vh;
   background-color: #2f3130;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 
   &__content {
@@ -58,11 +59,21 @@
   }
 }
 
+.controller {
+  position: absolute;
+  left: rem(-30);
+  bottom: rem(80);
+  width: rem(300);
+  height: auto;
+  z-index: 0;
+}
+
 .btn__icon {
   width: rem(44);
   height: rem(32);
   fill: $color-black;
   transition: transform 0.3s ease;
+
 }
 
 .btn__arrow {
@@ -74,6 +85,7 @@
 .btn--play:hover .btn__arrow {
   transform: scale(1.4) scaleY(1.7);
 }
+
 
 .btn--play {
   display: inline-flex;
@@ -87,17 +99,23 @@
   font-weight: $font-weight-semibold;
   padding: 0.75rem 1.25rem;
   font-family: 'Red_Rose';
+  transition: transform 0.3s ease, background-color 0.3s ease;
 
   &:hover {
     background-color: color.adjust($btn-play-bg, $lightness: -20%);
+    transform: scaleX(1.05);
 
     .btn__icon {
       transform: rotate(-14deg);
-      transition: transform 0.3s ease;
     }
   }
 }
 
+@media (max-height: 800px) {
+  .controller {
+    bottom: rem(20);
+  }
+}
 
 @media (max-width: 1024px) {
   .home {
@@ -112,6 +130,10 @@
     &__eyebrow {
       font-size: rem(32);
     }
+  }
+
+  .controller {
+    width: rem(260);
   }
 }
 
@@ -128,6 +150,10 @@
     &__eyebrow {
       font-size: rem(24);
     }
+  }
+
+  .controller {
+    width: rem(200);
   }
 }
 

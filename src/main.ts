@@ -5,7 +5,7 @@ import { showScreen } from './ts/router';
 import { gameSettings, gameState } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
 
-
+const SETTING_GROUPS = ['theme', 'player', 'board'];
 // Get all theme preview images and the theme option labels
 const previewImages = document.querySelectorAll('.settings__preview-img');
 const themeLabels = document.querySelectorAll('.settings__option:has(input[name="theme"])');
@@ -41,12 +41,7 @@ const settingsMain = document.querySelector('.settings__main');
 // Update the summary line live and re-check whether the start button can be enabled
 settingsMain?.addEventListener('change', (event) => {
     const target = event.target as HTMLInputElement;
-    const settingName = target.name;
-    const labelText = target.closest('.settings__option')?.querySelector('.settings__label')?.textContent;
-    const summarySpan = document.getElementById(`summary-${settingName}`);
-    if (summarySpan && labelText) {
-        summarySpan.textContent = labelText;
-    }
+    updateSummaryFor(target.name);
     checkCheckedRadios();
 });
 
@@ -70,6 +65,29 @@ function setPlayerColors(player: string): void {
         gameSettings.players[0].color = 'orange';
         gameSettings.players[1].color = 'blue';
     }
+}
+
+/**
+ * Writes the label of the checked radio of a group into its summary span.
+ * @param name - The radio group name ('theme', 'player' or 'board')
+ */
+function updateSummaryFor(name: string): void {
+    const checked = document.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
+    const labelText = checked?.closest('.settings__option')?.querySelector('.settings__label')?.textContent;
+    const summarySpan = document.getElementById(`summary-${name}`);
+    if (summarySpan && labelText) {
+        summarySpan.textContent = labelText;
+    }
+}
+
+/**
+ * Restores the settings screen from the still-selected radios:
+ * summary text, theme preview and start button state.
+ */
+function restoreSettings(): void {
+    SETTING_GROUPS.forEach((name) => updateSummaryFor(name));
+    showPreview(getCheckedValue('theme') ?? 'code-vibes');
+    checkCheckedRadios();
 }
 
 /**
@@ -168,7 +186,7 @@ const confirmExitBtn = document.getElementById('confirm-exit-btn');
 confirmExitBtn?.addEventListener('click', () => {
     closeExitDialog();
     exitGame();
-    resetSettings();
+    restoreSettings();
     showScreen('settings-screen');
 });
 
@@ -184,47 +202,8 @@ exitDialog?.addEventListener('click', (event) => {
  */
 function goHome(): void {
     exitGame();
-    resetSettings();
+    restoreSettings();
     showScreen('home-screen');
-}
-
-/**
- * Unchecks all radio buttons (theme, player, board).
- */
-function resetRadios(): void {
-    const radios = document.querySelectorAll<HTMLInputElement>(
-        'input[name="theme"], input[name="player"], input[name="board"]'
-    );
-    radios.forEach((radio) => {
-        radio.checked = false;
-    });
-}
-
-/**
- * Resets the summary line labels back to their placeholder text.
- */
-function resetSummaryText(): void {
-    const defaults = {
-        'summary-theme': 'Game theme',
-        'summary-player': 'Player',
-        'summary-board': 'Board size',
-    };
-
-    Object.entries(defaults).forEach(([id, text]) => {
-        const span = document.getElementById(id);
-        if (span) span.textContent = text;
-    });
-}
-
-/**
- * Resets the whole settings screen to its initial state:
- * disables the start button, clears selections, preview and summary.
- */
-function resetSettings(): void {
-    startBtn.disabled = true;
-    resetRadios();
-    showPreview('code-vibes');
-    resetSummaryText();
 }
 
 // Home buttons on the winner and draw screens: return to the home screen

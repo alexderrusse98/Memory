@@ -74,8 +74,9 @@ function createCardSide(sideClass: string, imgSrc: string): HTMLDivElement {
  * @param card - The card data to build the element from
  * @returns The finished card element
  */
-function createCardElement(card: CardData): HTMLDivElement {
-    const cardElement = document.createElement('div');
+function createCardElement(card: CardData): HTMLButtonElement {
+    const cardElement = document.createElement('button');
+    cardElement.type = 'button';
     cardElement.classList.add('card');
     cardElement.dataset.id = String(card.id);
 
@@ -91,6 +92,17 @@ function createCardElement(card: CardData): HTMLDivElement {
 }
 
 /**
+ * Disables the given cards so they can no longer be clicked or focused.
+ * @param cards - The cards to disable
+ */
+function disableCards(cards: CardData[]): void {
+    cards.forEach((card) => {
+        const element = document.querySelector<HTMLButtonElement>(`.card[data-id="${card.id}"]`);
+        element?.setAttribute('disabled', '');
+    });
+}
+
+/**
  * Renders all cards onto the board and updates the scoreboard.
  * @param cards - The cards to render
  */
@@ -102,27 +114,42 @@ export function renderBoard(cards: CardData[]): void {
     updateScoreboard();
 }
 
-// Board click handler (event delegation): flips the clicked card and checks for a match on the second flip
-board?.addEventListener('click', (event) => {
-    if (gameState.isLocked === true) return;   // ignore clicks while two cards are being compared
+/**
+ * Returns the card element for a click target, or null if the click
+ * did not hit a card that can still be flipped.
+ * @param target - The clicked element
+ * @returns The flippable card element, or null
+ */
+function getFlippableCard(target: HTMLElement): HTMLElement | null {
+    const cardElement = target.closest<HTMLElement>('.card');
+    if (!cardElement) return null;
+    if (cardElement.classList.contains('is-flipped')) return null;
+    return cardElement;
+}
 
-    const target = event.target as HTMLElement;
-    const cardElement = target.closest('.card') as HTMLElement;
-    if (!cardElement) return;                          // click was not on a card
-    if (cardElement.classList.contains('is-flipped')) return;   // card already flipped
-
-    cardElement.classList.toggle('is-flipped');
-
+/**
+ * Flips a card, adds it to the flipped cards and starts the match check
+ * once two cards are face up.
+ * @param cardElement - The card element to flip
+ */
+function flipCard(cardElement: HTMLElement): void {
     const clickedCard = gameState.cards.find((card) => card.id === Number(cardElement.dataset.id));
     if (!clickedCard) return;
 
+    cardElement.classList.add('is-flipped');
     gameState.flippedCards.push(clickedCard);
 
-    // Once two cards are flipped, lock the board and check if they match
     if (gameState.flippedCards.length === 2) {
         gameState.isLocked = true;
         checkForMatch();
     }
+}
+
+// Board click handler (event delegation)
+board?.addEventListener('click', (event) => {
+    if (gameState.isLocked) return;   // ignore clicks while two cards are being compared
+    const cardElement = getFlippableCard(event.target as HTMLElement);
+    if (cardElement) flipCard(cardElement);
 });
 
 /**
@@ -132,6 +159,7 @@ board?.addEventListener('click', (event) => {
 function handleMatch(): void {
     gameState.flippedCards[0].isMatched = true;
     gameState.flippedCards[1].isMatched = true;
+    disableCards(gameState.flippedCards);
     gameState.flippedCards = [];
     gameState.isLocked = false;
     gameState.settings.players[gameState.currentPlayerIndex].score += 1;
@@ -320,7 +348,6 @@ function updateCurrentPlayer(): void {
 
     const player1IconPath = `./assets/icons/${theme}/player-icon-${players[0].color}.svg`;
     const player2IconPath = `./assets/icons/${theme}/player-icon-${players[1].color}.svg`;
-
     const currentPlayerColor = players[gameState.currentPlayerIndex].color;
     // code-vibes uses the colored icon, all other themes use the white variant
     const currentPlayerIconColor = theme === 'code-vibes' ? currentPlayerColor : 'white';

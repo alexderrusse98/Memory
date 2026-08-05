@@ -8,11 +8,12 @@
 
 
 .settings {
-  min-height: auto;
+  min-height: 100dvh;
   background-color: $color-white;
   display: flex;
+  align-items: center;
   justify-content: center;
-  
+
   &__layout {
     display: flex;
     width: 100%;
@@ -61,11 +62,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 1.5rem;
-    margin-top: 6.75rem;
-  }
-
-  &__preview {
-    flex: 1;
+    margin-top: 4.75rem;
   }
 
   &__preview-img {
@@ -326,7 +323,7 @@
   .settings {
 
     &__layout {
-      padding: 2rem;
+      padding: 0 2rem;
     }
   }
 }
@@ -347,7 +344,7 @@
     }
 
     &__right {
-      margin-top: 3rem;
+      margin-top: 3.50rem;
     }
   }
 }
@@ -418,7 +415,7 @@
     &__layout {
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
+      padding: 0 1rem;
     }
 
     &__preview {
@@ -439,6 +436,10 @@
     &__start img {
       display: none;
     }
+
+    .settings__group {
+      margin-top: 1rem;
+    }
   }
 }
 
@@ -451,10 +452,6 @@
       &:hover:not(:disabled) {
         transform: scale(1.10);
       }
-    }
-
-    .settings__group {
-      margin-top: 1rem;
     }
 
     .settings__summary:has(.settings__start:hover:not(:disabled)) {

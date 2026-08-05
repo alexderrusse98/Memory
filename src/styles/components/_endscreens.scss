@@ -28,7 +28,8 @@
 .gameover-screen,
 .winner-screen,
 .draw-screen {
-    min-height: 100vh;
+
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,12 +37,7 @@
 }
 
 .winner-screen {
-    flex-direction: column;
-
-    &confetti {
-        width: 1233px;
-        height: 358px;
-    }
+    position: relative
 }
 
 .gameover-screen__content,
@@ -51,6 +47,8 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    margin: auto;
+
 }
 
 .draw-screen__label,
@@ -59,6 +57,10 @@
     font-size: 40px;
     font-family: 'Red_Rose';
     font-weight: 400;
+}
+
+.winner-screen__content {
+    padding-top: 180px;
 }
 
 .winner-screen__content h1 {
@@ -74,13 +76,9 @@
 }
 
 .draw-screen__title-img {
+    display: block;
     width: 420px;
     height: 78px;
-}
-
-.draw-screen__scale-icon {
-    width: 64px;
-    height: 64px;
 }
 
 .draw-screen__scale-icon {
@@ -108,9 +106,15 @@
     display: none;
 }
 
-.draw-screen__title-img {
-    display: block;
+.confetti {
+    position: absolute;
+    height: 180px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
 }
+
 
 [data-theme='code-vibes'] {
 
@@ -171,7 +175,6 @@
 
     &.gameover-screen,
     &.winner-screen,
-    &.draw-screen,
     &.draw-screen {
         background-color: $games-screen-bg-games;
     }
@@ -198,10 +201,6 @@
         width: 222px;
         font-size: 40px;
         font-family: 'Orbitron';
-    }
-
-    .confetti {
-        display: none;
     }
 
     .winner-screen__content {
@@ -270,10 +269,6 @@
         border-radius: 10px;
         width: auto;
         padding: 0 10px;
-    }
-
-    .confetti {
-        display: none;
     }
 
     .winner-screen__label {
@@ -380,10 +375,6 @@
         margin-top: -2rem;
     }
 
-    .confetti {
-        display: none;
-    }
-
     .winner-screen__label {
         font-family: 'Klee_One';
         font-size: 40px;
@@ -430,6 +421,31 @@
     .draw-screen__scale-icon {
         height: 285px;
         width: 312px;
+    }
+}
+
+@media (max-height: 800px) {
+    [data-theme] .winner-screen__label {
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+
+    [data-theme] #winner-name {
+        font-size: 60px;
+    }
+
+    [data-theme] #winner-icon {
+        height: 150px;
+    }
+}
+
+@media (max-height: 600px) {
+    .confetti {
+        display: none;
+    }
+
+    .winner-screen__content {
+        padding-top: 0;
     }
 }
 
