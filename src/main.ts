@@ -1,8 +1,10 @@
 import './styles/style.scss';
-import { createCards, renderBoard, exitGame, setIconSrc, updateExitDialogButtonText } from './ts/game';
+import { createCards, renderBoard, exitGame, updateExitDialogButtonText } from './ts/game';
+import { setIconSrc } from './ts/ui';
 import { showScreen } from './ts/router';
 import { gameSettings, gameState } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
+
 
 // Get all theme preview images and the theme option labels
 const previewImages = document.querySelectorAll('.settings__preview-img');

@@ -1,5 +1,9 @@
 import type { Theme } from './types';
 
+/**
+ * Maps each theme to its list of icon file names.
+ * Used to build the card pairs for the selected theme.
+ */
 export const themeIcons: Record<Theme, string[]> = {
     'code-vibes': [
         'angular-icon.svg', 'bootstrap-icon.svg', 'claudflare-icon.svg', 'css-icon.svg',
