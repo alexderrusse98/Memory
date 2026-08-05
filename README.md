@@ -4,7 +4,7 @@ A themeable memory card game for two players, built with Vite, TypeScript and SC
 
 ## Live Demo
 
-[Play the game](TODO)
+[Play the game](https://alexander-wiederhold.developerakademie.net/Memory/index.html)
 
 ## Preview
 
