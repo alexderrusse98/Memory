@@ -82,8 +82,8 @@ function createCardElement(card: CardData): HTMLDivElement {
     const inner = document.createElement('div');
     inner.classList.add('card__inner');
 
-    const front = createCardSide('card__front', `/assets/icons/${card.theme}/${card.imageUrl}`);
-    const back = createCardSide('card__back', `/assets/icons/${card.theme}/back-icon.svg`);
+    const front = createCardSide('card__front', `./assets/icons/${card.theme}/${card.imageUrl}`);
+    const back = createCardSide('card__back', `./assets/icons/${card.theme}/back-icon.svg`);
 
     inner.append(front, back);
     cardElement.appendChild(inner);
@@ -200,7 +200,7 @@ function applyThemeToEndScreens(): void {
  */
 function setupGameoverPlayers(): void {
     const { theme, players } = gameState.settings;
-    const iconPath = (color: string) => `/assets/icons/${theme}/player-icon-${color}.svg`;
+    const iconPath = (color: string) => `./assets/icons/${theme}/player-icon-${color}.svg`;
 
     setIconSrc('gameover-icon-player-1', iconPath(players[0].color));
     setIconSrc('gameover-icon-player-2', iconPath(players[1].color));
@@ -243,12 +243,12 @@ function setHomeButtonText(elementId: string): void {
 function getWinnerIconPath(player: Player): string {
     const theme = gameState.settings.theme;
     if (theme === 'games') {
-        return '/assets/icons/players/pokal.svg';
+        return './assets/icons/players/pokal.svg';
     }
     if (theme === 'da-projects') {
-        return `/assets/icons/players/player-${player.color}-white.svg`;
+        return `./assets/icons/players/player-${player.color}-white.svg`;
     }
-    return `/assets/icons/players/player-${player.color}.svg`;
+    return `./assets/icons/players/player-${player.color}.svg`;
 }
 
 /**
@@ -272,8 +272,8 @@ function showWinner(player: Player): void {
  */
 function showDraw(): void {
     const theme = gameState.settings.theme;
-    setIconSrc('draw-icon', `/assets/icons/scales/scale-${theme}.svg`);
-    setIconSrc('draw-title-img', `/assets/icons/${theme}/draw-${theme}.svg`);
+    setIconSrc('draw-icon', `./assets/icons/scales/scale-${theme}.svg`);
+    setIconSrc('draw-title-img', `./assets/icons/${theme}/draw-${theme}.svg`);
     showScreen('draw-screen');
 }
 
@@ -318,13 +318,13 @@ function updateCurrentPlayer(): void {
     const theme = gameState.settings.theme;
     const players = gameState.settings.players;
 
-    const player1IconPath = `/assets/icons/${theme}/player-icon-${players[0].color}.svg`;
-    const player2IconPath = `/assets/icons/${theme}/player-icon-${players[1].color}.svg`;
+    const player1IconPath = `./assets/icons/${theme}/player-icon-${players[0].color}.svg`;
+    const player2IconPath = `./assets/icons/${theme}/player-icon-${players[1].color}.svg`;
 
     const currentPlayerColor = players[gameState.currentPlayerIndex].color;
     // code-vibes uses the colored icon, all other themes use the white variant
     const currentPlayerIconColor = theme === 'code-vibes' ? currentPlayerColor : 'white';
-    const currentPlayerIconPath = `/assets/icons/${theme}/player-icon-${currentPlayerIconColor}.svg`;
+    const currentPlayerIconPath = `./assets/icons/${theme}/player-icon-${currentPlayerIconColor}.svg`;
 
     setIconSrc('icon-player-1', player1IconPath);
     setIconSrc('icon-player-2', player2IconPath);

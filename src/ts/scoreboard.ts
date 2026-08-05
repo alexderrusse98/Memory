@@ -50,13 +50,13 @@ function updateCurrentPlayer(): void {
     const theme = gameState.settings.theme;
     const players = gameState.settings.players;
 
-    const player1IconPath = `/assets/icons/${theme}/player-icon-${players[0].color}.svg`;
-    const player2IconPath = `/assets/icons/${theme}/player-icon-${players[1].color}.svg`;
+    const player1IconPath = `./assets/icons/${theme}/player-icon-${players[0].color}.svg`;
+    const player2IconPath = `./assets/icons/${theme}/player-icon-${players[1].color}.svg`;
 
     const currentPlayerColor = players[gameState.currentPlayerIndex].color;
     // code-vibes uses the colored icon, all other themes use the white variant
     const currentPlayerIconColor = theme === 'code-vibes' ? currentPlayerColor : 'white';
-    const currentPlayerIconPath = `/assets/icons/${theme}/player-icon-${currentPlayerIconColor}.svg`;
+    const currentPlayerIconPath = `./assets/icons/${theme}/player-icon-${currentPlayerIconColor}.svg`;
 
     setIconSrc('icon-player-1', player1IconPath);
     setIconSrc('icon-player-2', player2IconPath);
