@@ -6,7 +6,7 @@ import { updateScoreboard, setPlayerColorClass, setColorLabel } from './scoreboa
 import { setIconSrc } from './ui';
 
 // Delays in milliseconds for card animations and screen transitions
-const MISMATCH_DELAY_MS = 500;
+const MISMATCH_DELAY_MS = 1000;
 const WINNER_DELAY_MS = 2500;
 const GAMEOVER_DELAY_MS = 1500;
 
