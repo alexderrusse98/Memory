@@ -5,10 +5,33 @@ import { showScreen } from './ts/router';
 import { gameSettings, gameState } from './ts/state';
 import { BoardSize, Theme } from './ts/types';
 
+// Names of the three radio groups, used to update summary and preview
 const SETTING_GROUPS = ['theme', 'player', 'board'];
+
 // Get all theme preview images and the theme option labels
 const previewImages = document.querySelectorAll('.settings__preview-img');
 const themeLabels = document.querySelectorAll('.settings__option:has(input[name="theme"])');
+
+// Start button and the settings container the change events are delegated from
+const startBtn = document.getElementById('start-btn') as HTMLButtonElement;
+const settingsMain = document.querySelector('.settings__main');
+
+// Home screen play button: opens the settings screen
+const playBtn = document.getElementById('play-btn');
+const gameScreen = document.getElementById('game-screen');
+
+// --- Exit dialog ---
+const exitDialog = document.getElementById('exit-confirm-dialog') as HTMLDialogElement;
+
+// Exit button in the scoreboard: opens the confirmation dialog
+const exitBtn = document.getElementById('exit-game-btn');
+
+// "Back to game" button in the exit confirmation dialog
+const cancelExitBtn = document.getElementById('cancel-exit-btn');
+
+// Home buttons on the winner and draw screens: return to the home screen
+const homeBtn = document.getElementById('winner-home-btn');
+const drawHomeBtn = document.getElementById('draw-home-btn');
 
 /**
  * Shows the preview image for the given theme and hides all others.
@@ -35,19 +58,12 @@ themeLabels.forEach((label) => {
     });
 });
 
-const startBtn = document.getElementById('start-btn') as HTMLButtonElement;
-const settingsMain = document.querySelector('.settings__main');
-
 // Update the summary line live and re-check whether the start button can be enabled
 settingsMain?.addEventListener('change', (event) => {
     const target = event.target as HTMLInputElement;
     updateSummaryFor(target.name);
     checkCheckedRadios();
 });
-
-// Home screen play button: opens the settings screen
-const playBtn = document.getElementById('play-btn');
-const gameScreen = document.getElementById('game-screen');
 
 playBtn?.addEventListener('click', () => {
     showScreen('settings-screen');
@@ -159,11 +175,6 @@ startBtn?.addEventListener('click', () => {
     showScreen('game-screen');
 });
 
-// --- Exit dialog ---
-const exitDialog = document.getElementById('exit-confirm-dialog') as HTMLDialogElement;
-
-// Exit button in the scoreboard: opens the confirmation dialog
-const exitBtn = document.getElementById('exit-game-btn');
 exitBtn?.addEventListener('click', () => {
     exitDialog?.setAttribute('data-theme', gameState.settings.theme);
     updateExitDialogButtonText();
@@ -178,7 +189,6 @@ function closeExitDialog(): void {
 }
 
 // "Back to game" button: just closes the dialog
-const cancelExitBtn = document.getElementById('cancel-exit-btn');
 cancelExitBtn?.addEventListener('click', closeExitDialog);
 
 // "Exit game" button: closes the dialog, resets the game and returns to settings
@@ -205,10 +215,6 @@ function goHome(): void {
     restoreSettings();
     showScreen('home-screen');
 }
-
-// Home buttons on the winner and draw screens: return to the home screen
-const homeBtn = document.getElementById('winner-home-btn');
-const drawHomeBtn = document.getElementById('draw-home-btn');
 
 homeBtn?.addEventListener('click', goHome);
 drawHomeBtn?.addEventListener('click', goHome);

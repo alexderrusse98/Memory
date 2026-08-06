@@ -5,8 +5,15 @@ import { showScreen } from './router';
 import { updateScoreboard, setPlayerColorClass, setColorLabel } from './scoreboard';
 import { setIconSrc } from './ui';
 
+// Delays in milliseconds for card animations and screen transitions
 const MISMATCH_DELAY_MS = 500;
-const WINNER_DELAY_MS = 2000;
+const WINNER_DELAY_MS = 2500;
+const GAMEOVER_DELAY_MS = 1500;
+
+// Holds the ID of the pending screen transition, so it can be cancelled on exit
+let pendingTimeout: number | undefined;
+
+// The board container all cards are rendered into
 const board = document.getElementById('board');
 
 /**
@@ -165,7 +172,7 @@ function handleMatch(): void {
     gameState.settings.players[gameState.currentPlayerIndex].score += 1;
 
     if (gameState.cards.every((card) => card.isMatched)) {
-        getGameover();
+        pendingTimeout = window.setTimeout(getGameover, GAMEOVER_DELAY_MS);
     }
     updateScoreboard();
 }
@@ -247,8 +254,7 @@ function getGameover(): void {
     applyThemeToEndScreens();
     setupGameoverPlayers();
     showScreen('gameover-screen');
-
-    setTimeout(getWinner, WINNER_DELAY_MS);
+    pendingTimeout = window.setTimeout(getWinner, WINNER_DELAY_MS);
 }
 
 /**
@@ -324,42 +330,6 @@ function getWinner(): void {
 }
 
 /**
- * Updates both players' score numbers in the scoreboard.
- */
-function updateScoreValues(): void {
-    const player1Score = document.getElementById('value-player-1');
-    const player2Score = document.getElementById('value-player-2');
-    if (player1Score) {
-        player1Score.textContent = String(gameState.settings.players[0].score);
-    }
-    if (player2Score) {
-        player2Score.textContent = String(gameState.settings.players[1].score);
-    }
-}
-
-/**
- * Updates the player icons in the scoreboard and highlights the current player.
- * In the code-vibes theme the current player icon uses the player's color,
- * otherwise it uses a white variant.
- */
-function updateCurrentPlayer(): void {
-    const theme = gameState.settings.theme;
-    const players = gameState.settings.players;
-
-    const player1IconPath = `./assets/icons/${theme}/player-icon-${players[0].color}.svg`;
-    const player2IconPath = `./assets/icons/${theme}/player-icon-${players[1].color}.svg`;
-    const currentPlayerColor = players[gameState.currentPlayerIndex].color;
-    // code-vibes uses the colored icon, all other themes use the white variant
-    const currentPlayerIconColor = theme === 'code-vibes' ? currentPlayerColor : 'white';
-    const currentPlayerIconPath = `./assets/icons/${theme}/player-icon-${currentPlayerIconColor}.svg`;
-
-    setIconSrc('icon-player-1', player1IconPath);
-    setIconSrc('icon-player-2', player2IconPath);
-    setIconSrc('current-player-icon', currentPlayerIconPath);
-    setPlayerColorClass('current-player-badge', currentPlayerColor);
-}
-
-/**
  * Sets the exit dialog button texts depending on the theme.
  * games and food use more expressive labels, all other themes use plain ones.
  */
@@ -384,12 +354,13 @@ export function updateExitDialogButtonText(): void {
  * Resets the game state and clears the board, so a new game can start clean.
  */
 export function exitGame(): void {
+    window.clearTimeout(pendingTimeout);
     gameState.cards = [];
     gameState.flippedCards = [];
     gameState.currentPlayerIndex = 0;
     gameState.isLocked = false;
     gameState.settings.players[0].score = 0;
     gameState.settings.players[1].score = 0;
-    board?.replaceChildren();                                      // remove all card elements from the board
-    board?.classList.remove('board--16', 'board--24', 'board--36'); // clear any board size class
+    board?.replaceChildren();
+    board?.classList.remove('board--16', 'board--24', 'board--36');
 }

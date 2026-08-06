@@ -14,8 +14,6 @@
     color: white;
     width: 100%;
     max-width: 1440px;
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,8 +59,8 @@
 
 .controller {
   position: absolute;
-  left: rem(-30);
-  bottom: rem(80);
+  left: 0;
+  bottom: 0;
   width: rem(300);
   height: auto;
   z-index: 0;
@@ -83,7 +81,7 @@
 }
 
 .btn--play:hover .btn__arrow {
-  transform: scale(1.4) scaleY(1.7);
+  transform: scale(1.7) scaleY(1.7);
 }
 
 
@@ -102,8 +100,7 @@
   transition: transform 0.3s ease, background-color 0.3s ease;
 
   &:hover {
-    background-color: color.adjust($btn-play-bg, $lightness: -20%);
-    transform: scaleX(1.05);
+    transform: scaleX(1.15) scaleY(1.1);
 
     .btn__icon {
       transform: rotate(-14deg);
@@ -153,7 +150,7 @@
   }
 
   .controller {
-    width: rem(200);
+    width: rem(180);
   }
 }
 
